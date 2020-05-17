@@ -1,0 +1,56 @@
+@mixin hiddenAnimation {
+    transition: opacity 0.5s, visibility 0.5s 0s;
+    visibility: hidden;
+    opacity: 0;
+}
+
+@mixin visibleAnimation {
+    transition: opacity 0.5s, visibility 0.5s;
+    will-change: opacity, visibility;
+    visibility: visible;
+    opacity: 1
+}
+
+@mixin button-color-variant($color, $background, $background-hover, $background-active: $background-hover, $border-color: $background) {
+    color: $color;
+    background-color: $background;
+    border-color: $border-color;
+
+    &:active, &:focus, &:hover {
+        color: $color;
+        background-color: $background-hover;
+        border-color: $border-color;
+    }
+
+    &:active {
+        background-color: $background-active;
+        border-color: $border-color;
+    }
+
+    &.inverse {
+        color: $background;
+        background-color: #fff;
+        border-color: $background;
+
+        &:active, &:focus, &:hover {
+            color: $background-hover;
+            background-color: #fff;
+            border-color: $background-hover;
+        }
+    }
+}
+
+@mixin button-link-variant($color, $hover, $padding) {
+
+    border: 1px solid transparent;
+    background-color: transparent;
+    color: $color;
+    padding-left: $padding;
+    padding-right: $padding;
+
+    &:active, &:focus, &:hover {
+        border: 1px solid transparent;
+        background-color: transparent;
+        color: $hover;
+    }
+}

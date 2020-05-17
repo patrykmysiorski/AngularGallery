@@ -1,0 +1,70 @@
+@import "variables";
+
+//
+// Buttons
+// --------------------------------------------------
+// Base styles
+// --------------------------------------------------
+
+.button{
+    display: inline-block;
+    margin: 0;
+    padding: 10px 15px;
+    line-height: $input-height-base;
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    text-align: center;
+    vertical-align: middle;
+    border-width: $btn-border-width;
+    border-style: solid;
+    border-radius: $border-radius-base;
+    white-space: nowrap;
+    touch-action: manipulation;
+    cursor: pointer;
+    outline: none;
+    transition: all 500ms;
+    text-decoration: none;
+    box-shadow: none;
+    outline: 0;
+
+    &.button-small {
+        padding: 6px 10px;
+        line-height: 20px;
+        height: $input-height-small;
+        font-size: $font-size-base;
+    }
+
+    &.button-block {
+        width: 100%;
+        white-space: normal;
+        height: auto;
+    }
+
+    &.disabled, &[disabled] {
+        cursor: $cursor-disabled;
+        opacity: 0.65;
+    }
+}
+
+.button-primary {
+    @include button-color-variant($btn-color, $brand-primary, $brand-primary-hover, $brand-primary-active);
+}
+
+.button-success {
+    @include button-color-variant($btn-color, $brand-success, $brand-success-hover, $brand-success-active);
+}
+
+.button-danger {
+    @include button-color-variant($btn-color, $brand-danger, $brand-danger-hover, $brand-danger-active);
+}
+
+.button-link {
+    @include button-link-variant($link-color, $link-color-hover, 0);
+}
+
+.button-group {
+    .button + .button, .button + span {
+        margin-left: 15px;
+        margin-right: 0;
+    }
+}

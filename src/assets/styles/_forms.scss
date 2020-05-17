@@ -1,0 +1,86 @@
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 0;
+    font-weight: bold;
+    line-height: 1em;
+}
+
+.input-control {
+    display: block;
+    width: 100%;
+    height: $input-height-small;
+    padding: $input-padding-small;
+    font-size: 14px;
+    line-height: $line-height-base;
+    color: $input-color;
+    background-color: $input-bg;
+    background-image: none;
+    border: 1px solid $input-border;
+    border-radius: $border-radius-base;
+    box-shadow: none;
+    outline: none;
+    transition: border-color ease-in-out .15s;
+    font-family: $font-family-base;
+
+    &:focus {
+        border-color: $input-border-focus;
+    }
+
+    &.input-small {
+        height: $input-height-small;
+        padding: $input-padding-small;
+    }
+
+    &.disabled, &[disabled], &[readonly], fieldset[disabled] & {
+        background-color: $input-bg-disabled;
+        opacity: 1; // iOS fix for unreadable disabled content; see https://github.com/twbs/bootstrap/issues/11655
+    }
+
+    &.disabled, &[disabled], fieldset[disabled] & {
+        cursor: $cursor-disabled;
+    }
+
+    &::-moz-placeholder {
+        color: $gray;
+        opacity: 1;
+    }
+    &:-ms-input-placeholder { color: $gray; } // Internet Explorer 10+
+    &::-webkit-input-placeholder  { color: $gray; } // Safari and Chrome
+
+
+
+    &.has-error, &.input-error {
+        border-color: $brand-danger;
+    }
+}
+
+textarea,
+textarea.input-control {
+    height: 100px;
+    resize: vertical;
+}
+
+//input group
+.input-group {
+    margin-bottom: 20px;
+
+    .error-text {
+        display: none;
+    }
+
+    //input states on validation
+    &.input-error {
+
+        .error-text {
+            display: block;
+        }
+
+        .input-control {
+            &.input-error {
+                border-color: $brand-danger;
+            }
+            border-color: $brand-danger;
+        }
+    }
+}
