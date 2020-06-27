@@ -7,6 +7,7 @@ import {FormsModule} from '@angular/forms';
 import { SearchGalleriesPipe } from './pipes/search-galleries.pipe';
 import { SearchByYearPipe } from './pipes/search-by-year.pipe';
 import { GalleriesComponent } from './components/galleries/galleries/galleries.component';
+import { GalleryItemComponent } from './components/galleries/gallery-item/gallery-item.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { GalleriesComponent } from './components/galleries/galleries/galleries.c
     HeaderComponent,
     SearchGalleriesPipe,
     SearchByYearPipe,
-    GalleriesComponent
+    GalleriesComponent,
+    GalleryItemComponent
   ],
   imports: [
     BrowserModule,

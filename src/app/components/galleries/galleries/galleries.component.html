@@ -17,11 +17,11 @@
 <section>
   <div class="flex-container-galleries">
     <!--TODO trackBY directive doesn`t work-->
-    <div class="gallery" *ngFor="let gallery of galleries | searchGalleries : searchValue | searchByYear : yearSearch">
-      <img src="{{gallery.thumbUrl}}" alt="image not found">
-      <p>{{gallery.title}}</p>
-      <p><small>{{gallery.dateCreated | date: 'longDate'}}</small></p>
-      <p>{{gallery.description}}</p>
-    </div>
+      <app-gallery-item
+        class = "gallery"
+        *ngFor="let gallery of galleries | searchGalleries : searchValue | searchByYear : yearSearch;"
+        [gallery] = "gallery"
+      >
+      </app-gallery-item>
   </div>
 </section>
