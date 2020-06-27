@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import {FormsModule} from '@angular/forms';
 import { SearchGalleriesPipe } from './pipes/search-galleries.pipe';
+import { SearchByYearPipe } from './pipes/search-by-year.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SearchGalleriesPipe
+    SearchGalleriesPipe,
+    SearchByYearPipe
   ],
   imports: [
     BrowserModule,
