@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {IGallery} from './IGallery';
+import {Galleries} from './constants/galleries.constant';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AngularGallery';
+  description: string;
+  galleries: IGallery[];
+
+  constructor() {
+    this.title = 'My travels';
+    this.description = 'Website created for front-end technologies at university';
+    this.galleries = Galleries;
+  }
+
 }
