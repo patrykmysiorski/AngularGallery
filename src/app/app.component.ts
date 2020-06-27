@@ -11,11 +11,12 @@ export class AppComponent {
   title = 'AngularGallery';
   description: string;
   galleries: IGallery[];
+  searchValue: any;
 
   constructor() {
     this.title = 'My travels';
     this.description = 'Website created for front-end technologies at university';
     this.galleries = Galleries;
+    this.searchValue = '';
   }
-
 }
