@@ -9,6 +9,11 @@
         <input type="text" name="searchValue" [(ngModel)]="searchValue"
                placeholder="Search">
       </label>
+      <ul class="year-flex-container">
+        <li *ngFor="let year of travelYearsArray" (click)="setValue(year)">
+          {{year}}
+        </li>
+      </ul>
     </div>
     <hr>
     <h6>{{description}}</h6>
@@ -16,7 +21,7 @@
   <section>
     <div class="flex-container-galleries">
       <!--TODO trackBY directive doesn`t work-->
-      <div class="gallery" *ngFor="let gallery of galleries | searchGalleries : searchValue">
+      <div class="gallery" *ngFor="let gallery of galleries | searchGalleries : searchValue | searchByYear : yearSearch">
         <img src="{{gallery.thumbUrl}}" alt="image not found">
         <p>{{gallery.title}}</p>
         <p><small>{{gallery.dateCreated | date: 'longDate'}}</small></p>
