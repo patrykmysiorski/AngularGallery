@@ -7,3 +7,21 @@
 @import "icons";
 @import "text";
 @import "app";
+
+
+body {
+  font-family: $font-family-base;
+  background-color: #535353;
+  color: white;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.flex-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
