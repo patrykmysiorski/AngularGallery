@@ -3,23 +3,24 @@
     <app-header></app-header>
   </nav>
   <header>
-    <h1>{{title}}</h1>
+    <div class="header-flex-container">
+      <h1>{{title}}</h1>
+      <label class="search-box">
+        <input type="text" name="searchValue" [(ngModel)]="searchValue"
+               placeholder="Search">
+      </label>
+    </div>
     <hr>
     <h6>{{description}}</h6>
   </header>
   <section>
     <div class="flex-container-galleries">
-      <div class="gallery">
-      </div>
-      <div class="gallery">
-      </div>
-      <div class="gallery">
-      </div>
-      <div class="gallery">
-      </div>
-      <div class="gallery">
-      </div>
-      <div class="gallery">
+      <!--TODO trackBY directive doesn`t work-->
+      <div class="gallery" *ngFor="let gallery of galleries | searchGalleries : searchValue">
+        <img src="{{gallery.thumbUrl}}" alt="image not found">
+        <p>{{gallery.title}}</p>
+        <p><small>{{gallery.dateCreated | date: 'longDate'}}</small></p>
+        <p>{{gallery.description}}</p>
       </div>
     </div>
   </section>
