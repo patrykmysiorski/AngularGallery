@@ -11,6 +11,7 @@ import { GallerySearchComponent } from './components/galleries/gallery-search/ga
 import { GallerySearchByYearComponent } from './components/galleries/gallery-search-by-year/gallery-search-by-year.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
+import { GalleryComponent } from './components/galleries/gallery/gallery.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DashboardComponent } from './components/dashboard/dashboard/dashboard.c
     GalleryItemComponent,
     GallerySearchComponent,
     GallerySearchByYearComponent,
-    DashboardComponent
+    DashboardComponent,
+    GalleryComponent
   ],
   imports: [
     BrowserModule,
