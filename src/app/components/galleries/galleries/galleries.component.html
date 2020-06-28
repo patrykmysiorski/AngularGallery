@@ -6,11 +6,11 @@
       (searchValue)="setSearchValue($event)"
     >
     </app-gallery-search>
-    <ul class="year-flex-container">
-      <li *ngFor="let year of travelYearsArray" (click)="setValue(year)">
-        {{year}}
-      </li>
-    </ul>
+    <app-gallery-search-by-year
+      [yearsArray] = "travelYearsArray"
+      (searchYear)="setSearchYear($event)"
+    >
+    </app-gallery-search-by-year>
   </div>
   <hr>
   <h6>{{description}}</h6>

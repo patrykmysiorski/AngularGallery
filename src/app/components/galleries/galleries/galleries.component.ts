@@ -26,10 +26,6 @@ export class GalleriesComponent implements OnInit {
     this.travelYearsArray.sort((a, b) => a - b);
   }
 
-  setValue = (value) => {
-    this.yearSearch = value;
-  }
-
   constructor() {
     this.title = 'My travels';
     this.description = 'Website created for front-end technologies at university';
@@ -40,6 +36,10 @@ export class GalleriesComponent implements OnInit {
 
   setSearchValue($event) {
     this.searchValue = $event;
+  }
+
+  setSearchYear($event) {
+    this.yearSearch = $event;
   }
 
   ngOnInit(): void {
