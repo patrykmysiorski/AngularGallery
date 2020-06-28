@@ -1,0 +1,29 @@
+<header>
+  <div class="header-flex-container">
+    <h1>{{title}}</h1>
+    <app-gallery-search
+      *ngIf="galleries.length"
+      (searchValue)="setSearchValue($event)"
+    >
+    </app-gallery-search>
+    <app-gallery-search-by-year
+      *ngIf="galleries.length"
+      [yearsArray] = "travelYearsArray"
+      (searchYear)="setSearchYear($event)"
+    >
+    </app-gallery-search-by-year>
+  </div>
+  <hr>
+  <h6>{{description}}</h6>
+</header>
+<section>
+  <div class="flex-container-galleries">
+    <!--TODO trackBY directive doesn`t work-->
+      <app-gallery-item
+        class = "gallery"
+        *ngFor="let gallery of galleries | searchGalleries : searchValue | searchByYear : yearSearch;"
+        [gallery] = "gallery"
+      >
+      </app-gallery-item>
+  </div>
+</section>

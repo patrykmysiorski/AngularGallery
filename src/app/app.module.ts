@@ -6,13 +6,21 @@ import { HeaderComponent } from './header/header.component';
 import {FormsModule} from '@angular/forms';
 import { SearchGalleriesPipe } from './pipes/search-galleries.pipe';
 import { SearchByYearPipe } from './pipes/search-by-year.pipe';
+import { GalleriesComponent } from './components/galleries/galleries/galleries.component';
+import { GalleryItemComponent } from './components/galleries/gallery-item/gallery-item.component';
+import { GallerySearchComponent } from './components/galleries/gallery-search/gallery-search.component';
+import { GallerySearchByYearComponent } from './components/galleries/gallery-search-by-year/gallery-search-by-year.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     SearchGalleriesPipe,
-    SearchByYearPipe
+    SearchByYearPipe,
+    GalleriesComponent,
+    GalleryItemComponent,
+    GallerySearchComponent,
+    GallerySearchByYearComponent
   ],
   imports: [
     BrowserModule,
