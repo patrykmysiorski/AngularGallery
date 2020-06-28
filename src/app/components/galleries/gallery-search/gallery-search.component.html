@@ -1,4 +1,7 @@
-<label class="search-box">
-  <input type="text" name="searchValue" [(ngModel)]="value"
-         placeholder="Search" (keyup)="onChange()">
-</label>
+<div class="search-flex-container">
+  <label class="search-box">
+    <input type="text" name="searchValue" [(ngModel)]="value"
+           placeholder="Search" (keyup)="onChange()">
+  </label>
+  <p>{{itemsInGalleries}}</p>
+</div>
