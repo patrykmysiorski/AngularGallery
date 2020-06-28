@@ -7,14 +7,7 @@ export const Galleries = [
     dateCreated: '2015-12-15T00:00:00+00:00',
     thumbUrl: './assets/img/galleries/box1/main.jpeg',
     description: 'Kilka dni zwariowanego wypadu do Rzymu.',
-    tags: [
-      {
-        tag: 'Koloseum'
-      },
-      {
-        tag: 'Watykan'
-      }
-    ],
+    tags: ['Koloseum', 'Watykan'],
     photos: [
       {
         photoId: '1',
@@ -23,22 +16,22 @@ export const Galleries = [
       },
       {
         photoId: '2',
-        thumbUrl: './assets/img/galleries/box1/main.jpeg',
+        thumbUrl: './assets/img/galleries/box2/main.jpeg',
         imgUrl: './assets/img/galleries/box1/main.jpeg'
       },
       {
         photoId: '3',
-        thumbUrl: './assets/img/galleries/box1/main.jpeg',
+        thumbUrl: './assets/img/galleries/box3/main.jpeg',
         imgUrl: './assets/img/galleries/box1/main.jpeg'
       },
       {
         photoId: '4',
-        thumbUrl: './assets/img/galleries/box1/main.jpeg',
+        thumbUrl: './assets/img/galleries/box4/main.jpeg',
         imgUrl: './assets/img/galleries/box1/main.jpeg'
       },
       {
         photoId: '5',
-        thumbUrl: './assets/img/galleries/box1/main.jpeg',
+        thumbUrl: './assets/img/galleries/box5/main.jpeg',
         imgUrl: './assets/img/galleries/box1/main.jpeg'
       }
     ]
