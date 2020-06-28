@@ -40,16 +40,15 @@ li {
   color: black;
 }
 
-.btn {
-  width: 120px;
-  height: 50px;
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
 }
 
-.btn-send {
-  background-color: #20A5FF;
-}
-
-.btn-remove {
-  margin-left: 25px;
-  background-color: red;
+.button {
+  margin-right: 30px;
 }

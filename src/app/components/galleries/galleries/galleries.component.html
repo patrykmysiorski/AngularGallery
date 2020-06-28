@@ -26,6 +26,8 @@
     >
     </app-gallery-item>
   </div>
-  <button class="btn btn-send" (click)="exportGalleries()">Export galleries</button>
-  <button class="btn btn-remove" (click)="removeGalleries()">Delete galleries</button>
+  <div class="buttons-container">
+    <button class="button btn btn-primary" (click)="exportGalleries()">Export galleries</button>
+    <button class="button btn btn-danger" (click)="removeGalleries()">Delete galleries</button>
+  </div>
 </section>
