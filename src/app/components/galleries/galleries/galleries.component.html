@@ -8,7 +8,7 @@
     </app-gallery-search>
     <app-gallery-search-by-year
       *ngIf="galleries.length"
-      [yearsArray] = "travelYearsArray"
+      [yearsArray]="travelYearsArray"
       (searchYear)="setSearchYear($event)"
     >
     </app-gallery-search-by-year>
@@ -19,11 +19,16 @@
 <section>
   <div class="flex-container-galleries">
     <!--TODO trackBY directive doesn`t work-->
-      <app-gallery-item
-        class = "gallery"
-        *ngFor="let gallery of galleries | searchGalleries : searchValue | searchByYear : yearSearch;"
-        [gallery] = "gallery"
-      >
-      </app-gallery-item>
+    <app-gallery-item
+      class="gallery"
+      *ngFor="let gallery of galleries | searchGalleries : searchValue | searchByYear : yearSearch;"
+      [gallery]="gallery"
+      (deleteGallery)="removeGallery($event)"
+    >
+    </app-gallery-item>
+  </div>
+  <div class="buttons-container">
+    <button class="button btn btn-primary" (click)="exportGalleries()">Export galleries</button>
+    <button class="button btn btn-danger" (click)="removeGalleries()">Delete galleries</button>
   </div>
 </section>

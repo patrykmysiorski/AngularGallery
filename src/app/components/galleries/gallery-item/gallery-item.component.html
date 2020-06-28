@@ -4,3 +4,4 @@
 <p>{{gallery.title}}</p>
 <p><small>{{gallery.dateCreated | date: 'longDate'}}</small></p>
 <p>{{gallery.description}}</p>
+<button class="m-t-20 btn btn-danger" (click)="onDelete(gallery.galleryId)">delete gallery</button>

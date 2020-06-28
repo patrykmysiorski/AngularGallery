@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IGallery} from '../../../../intefaces/IGallery';
 import {Galleries} from '../../../constants/galleries.constant';
 import * as moment from 'moment';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'app-galleries',
@@ -9,6 +10,16 @@ import * as moment from 'moment';
   styleUrls: ['./galleries.component.scss']
 })
 export class GalleriesComponent implements OnInit {
+
+  httpOptions = {
+    headers: new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        Authorization: '104'
+      }
+    )
+  };
+
   title = 'AngularGallery';
   description: string;
   galleries: IGallery[];
@@ -24,14 +35,22 @@ export class GalleriesComponent implements OnInit {
       this.travelYearsArray.push(parseInt(year, 10));
     });
     this.travelYearsArray.sort((a, b) => a - b);
-  }
+  };
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.title = 'My travels';
     this.description = 'Website created for front-end technologies at university';
-    this.galleries = Galleries;
+    this.galleries = this.fetchGalleries();
     this.searchValue = '';
     this.createSortedYearsArray();
+  }
+
+  fetchGalleries() {
+    this.galleries = [];
+    this.http.get('http://project.usagi.pl/gallery', this.httpOptions).toPromise().then((response: IGallery[]) => {
+      this.galleries = response;
+    });
+    return this.galleries;
   }
 
   setSearchValue($event) {
@@ -41,6 +60,44 @@ export class GalleriesComponent implements OnInit {
   setSearchYear($event) {
     this.yearSearch = $event;
   }
+
+  exportGalleries() {
+    Galleries.forEach((gallery: IGallery) => {
+      delete (gallery.galleryId);
+
+      this.http.post('http://project.usagi.pl/gallery', gallery, this.httpOptions).toPromise().then((response: IGallery) => {
+        console.log('success', response);
+        this.galleries.push(response);
+      }, (errResponse) => {
+        console.log('error', errResponse);
+      });
+    });
+  }
+
+  removeGalleries() {
+    this.galleries.forEach((gallery: IGallery) => {
+      this.http.post('http://project.usagi.pl/gallery/delete/' +
+        gallery.galleryId, {}, this.httpOptions).toPromise().then((response) => {
+        this.galleries.splice(0, 1);
+        console.log('success', response);
+      }, (errResponse) => {
+        console.log('error', errResponse);
+      });
+    });
+  }
+
+  removeGallery(galleryId) {
+    const index = this.galleries.findIndex((gallery: IGallery) =>
+      gallery.galleryId === galleryId);
+    this.http.post('http://project.usagi.pl/gallery/delete/' + galleryId,
+      {}, this.httpOptions).toPromise().then((response) => {
+      this.galleries.splice(index, 1);
+      console.log('success', response);
+    }, (errResponse) => {
+      console.log('error', errResponse);
+    });
+  }
+
 
   ngOnInit(): void {
   }

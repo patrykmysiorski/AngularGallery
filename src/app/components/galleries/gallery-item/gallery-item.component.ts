@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {IGallery} from '../../../../intefaces/IGallery';
 
 @Component({
@@ -9,8 +9,13 @@ import {IGallery} from '../../../../intefaces/IGallery';
 export class GalleryItemComponent implements OnInit {
 
   @Input() gallery: IGallery;
+  @Output() deleteGallery: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
+
+  onDelete(galleryId: string) {
+    this.deleteGallery.emit(galleryId);
+  }
 
   ngOnInit(): void {
   }
