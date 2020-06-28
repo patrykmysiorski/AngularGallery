@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {IGallery} from '../IGallery';
+import {IGallery} from '../../intefaces/IGallery';
 import * as moment from 'moment';
 
 @Pipe({

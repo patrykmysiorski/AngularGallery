@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import {FormsModule} from '@angular/forms';
@@ -10,6 +9,9 @@ import { GalleriesComponent } from './components/galleries/galleries/galleries.c
 import { GalleryItemComponent } from './components/galleries/gallery-item/gallery-item.component';
 import { GallerySearchComponent } from './components/galleries/gallery-search/gallery-search.component';
 import { GallerySearchByYearComponent } from './components/galleries/gallery-search-by-year/gallery-search-by-year.component';
+import { AppRoutingModule } from './app-routing.module';
+import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
+import { GalleryComponent } from './components/galleries/gallery/gallery.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +22,14 @@ import { GallerySearchByYearComponent } from './components/galleries/gallery-sea
     GalleriesComponent,
     GalleryItemComponent,
     GallerySearchComponent,
-    GallerySearchByYearComponent
+    GallerySearchByYearComponent,
+    DashboardComponent,
+    GalleryComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

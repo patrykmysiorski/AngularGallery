@@ -1,0 +1,7 @@
+@import "../../assets/styles/variables";
+
+ul li a {
+  &.is-active {
+    color: $brand-success;
+  }
+}

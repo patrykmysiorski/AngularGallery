@@ -8,8 +8,9 @@
     </div>
     <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
       <ul class="nav navbar-nav">
-        <li><a href="#">News</a></li>
-        <li><a href="#">Galleries</a></li>
+        <li><a routerLink="/dashboard" routerLinkActive="is-active">Main page</a></li>
+        <li><a routerLink="/galleries" routerLinkActive="is-active">Galleries</a></li>
+        <li><a routerLink="/contact" routerLinkActive="is-active">Contact</a></li>
       </ul>
     </div>
   </div>

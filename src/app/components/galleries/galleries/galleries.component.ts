@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {IGallery} from '../../../IGallery';
+import {IGallery} from '../../../../intefaces/IGallery';
 import {Galleries} from '../../../constants/galleries.constant';
 import * as moment from 'moment';
 
