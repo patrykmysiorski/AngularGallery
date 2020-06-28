@@ -1,4 +1,6 @@
-<img src="{{gallery.thumbUrl}}" alt="image not found">
+<a routerLink="/galleries/{{gallery.galleryId}}" class="thumb-container">
+  <img src="{{gallery.thumbUrl}}" alt="image not found">
+</a>
 <p>{{gallery.title}}</p>
 <p><small>{{gallery.dateCreated | date: 'longDate'}}</small></p>
 <p>{{gallery.description}}</p>
