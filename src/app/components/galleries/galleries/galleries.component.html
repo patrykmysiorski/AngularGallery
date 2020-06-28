@@ -27,8 +27,13 @@
     >
     </app-gallery-item>
   </div>
-  <div class="buttons-container">
-    <button class="button btn btn-primary" (click)="exportGalleries()">Export galleries</button>
-    <button class="button btn btn-danger" (click)="removeGalleries()">Delete galleries</button>
+  <div class="m-l-30" *ngIf="galleries">
+    <div class="grid-16">
+      <span *ngFor="let item of numberOfPages; let i = index"><a (click)="setCurrentPage(i)">{{i + 1}}</a>,</span>
+    </div>
   </div>
+    <div class="buttons-container">
+      <button class="button btn btn-primary" (click)="exportGalleries()">Export galleries</button>
+      <button class="button btn btn-danger" (click)="removeGalleries()">Delete galleries</button>
+    </div>
 </section>

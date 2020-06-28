@@ -31,6 +31,7 @@ export class GalleriesComponent implements OnInit {
   start: number;
   end: number;
   currentPage: number;
+  numberOfPages: any;
 
   createSortedYearsArray = () => {
     this.travelYearsSet = new Set();
@@ -39,7 +40,7 @@ export class GalleriesComponent implements OnInit {
       this.travelYearsArray.push(parseInt(year, 10));
     });
     this.travelYearsArray.sort((a, b) => a - b);
-  }
+  };
 
   constructor(private http: HttpClient) {
     this.title = 'My travels';
@@ -53,6 +54,8 @@ export class GalleriesComponent implements OnInit {
     this.galleries = [];
     this.http.get('http://project.usagi.pl/gallery', this.httpOptions).toPromise().then((response: IGallery[]) => {
       this.galleries = response;
+      this.numberOfPages = Array(Math.ceil(this.galleries.length /
+        this.limit)).fill(1);
     });
     return this.galleries;
   }
@@ -71,6 +74,8 @@ export class GalleriesComponent implements OnInit {
 
       this.http.post('http://project.usagi.pl/gallery', gallery, this.httpOptions).toPromise().then((response: IGallery) => {
         console.log('success', response);
+        this.numberOfPages = Array(Math.ceil(this.galleries.length /
+          this.limit)).fill(1);
         this.galleries.push(response);
       }, (errResponse) => {
         console.log('error', errResponse);
@@ -83,6 +88,8 @@ export class GalleriesComponent implements OnInit {
       this.http.post('http://project.usagi.pl/gallery/delete/' +
         gallery.galleryId, {}, this.httpOptions).toPromise().then((response) => {
         this.galleries.splice(0, 1);
+        this.numberOfPages = Array(Math.ceil(this.galleries.length /
+          this.limit)).fill(1);
         console.log('success', response);
       }, (errResponse) => {
         console.log('error', errResponse);
@@ -96,6 +103,8 @@ export class GalleriesComponent implements OnInit {
     this.http.post('http://project.usagi.pl/gallery/delete/' + galleryId,
       {}, this.httpOptions).toPromise().then((response) => {
       this.galleries.splice(index, 1);
+      this.numberOfPages = Array(Math.ceil(this.galleries.length /
+        this.limit)).fill(1);
       console.log('success', response);
     }, (errResponse) => {
       console.log('error', errResponse);
@@ -107,11 +116,20 @@ export class GalleriesComponent implements OnInit {
     this.currentPage = page;
     this.start = this.currentPage * this.limit;
     this.end = this.start + 3;
+    localStorage.setItem('galleryPage', this.currentPage.toString());
   }
 
 
   ngOnInit(): void {
     this.setCurrentPage();
+    this.http.get('http://project.usagi.pl/gallery',
+      this.httpOptions).toPromise().then((response: IGallery[]) => {
+      this.galleries = response;
+      this.numberOfPages = Array(Math.ceil(this.galleries.length /
+        this.limit)).fill(1);
+    });
+    // this.currentPage = parseInt(localStorage.getItem('galleryPage')) || 0;
+    // this.setCurrentPage(this.currentPage);
   }
 
 }
