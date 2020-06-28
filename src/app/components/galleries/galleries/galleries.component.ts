@@ -121,15 +121,14 @@ export class GalleriesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.setCurrentPage();
     this.http.get('http://project.usagi.pl/gallery',
       this.httpOptions).toPromise().then((response: IGallery[]) => {
       this.galleries = response;
       this.numberOfPages = Array(Math.ceil(this.galleries.length /
         this.limit)).fill(1);
     });
-    // this.currentPage = parseInt(localStorage.getItem('galleryPage')) || 0;
-    // this.setCurrentPage(this.currentPage);
+    this.currentPage = parseInt(localStorage.getItem('galleryPage')) || 0;
+    this.setCurrentPage(this.currentPage);
   }
 
 }
