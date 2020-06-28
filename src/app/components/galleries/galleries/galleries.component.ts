@@ -119,6 +119,13 @@ export class GalleriesComponent implements OnInit {
     localStorage.setItem('galleryPage', this.currentPage.toString());
   }
 
+  moveBack() {
+    this.setCurrentPage(this.currentPage - 1);
+  }
+
+  moveForward() {
+    this.setCurrentPage(this.currentPage + 1);
+  }
 
   ngOnInit(): void {
     this.http.get('http://project.usagi.pl/gallery',
