@@ -48,7 +48,6 @@ export class GalleriesComponent implements OnInit {
   fetchGalleries() {
     this.galleries = [];
     this.http.get('http://project.usagi.pl/gallery', this.httpOptions).toPromise().then((response: IGallery[]) => {
-      console.log(response);
       this.galleries = response;
     });
     return this.galleries;
@@ -86,6 +85,19 @@ export class GalleriesComponent implements OnInit {
       });
     });
   }
+
+  removeGallery(galleryId) {
+    const index = this.galleries.findIndex((gallery: IGallery) =>
+      gallery.galleryId === galleryId);
+    this.http.post('http://project.usagi.pl/gallery/delete/' + galleryId,
+      {}, this.httpOptions).toPromise().then((response) => {
+      this.galleries.splice(index, 1);
+      console.log('success', response);
+    }, (errResponse) => {
+      console.log('error', errResponse);
+    });
+  }
+
 
   ngOnInit(): void {
   }

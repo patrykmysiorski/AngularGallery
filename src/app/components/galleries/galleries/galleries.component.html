@@ -23,6 +23,7 @@
       class="gallery"
       *ngFor="let gallery of galleries | searchGalleries : searchValue | searchByYear : yearSearch;"
       [gallery]="gallery"
+      (deleteGallery)="removeGallery($event)"
     >
     </app-gallery-item>
   </div>
