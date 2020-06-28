@@ -40,8 +40,16 @@ li {
   color: black;
 }
 
-.btn-send {
-  width: 100px;
+.btn {
+  width: 120px;
   height: 50px;
+}
+
+.btn-send {
   background-color: #20A5FF;
+}
+
+.btn-remove {
+  margin-left: 25px;
+  background-color: red;
 }
