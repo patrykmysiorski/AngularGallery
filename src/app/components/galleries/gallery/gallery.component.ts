@@ -18,7 +18,6 @@ export class GalleryComponent implements OnInit {
   ngOnInit(): void {
     this.galleryId = this.route.snapshot.paramMap.get('galleryId');
     this.gallery = Galleries.find((item: IGallery) => item.galleryId === this.galleryId);
-    console.log(this.gallery);
   }
 
 }
