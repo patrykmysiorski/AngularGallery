@@ -8,6 +8,7 @@ import { SearchGalleriesPipe } from './pipes/search-galleries.pipe';
 import { SearchByYearPipe } from './pipes/search-by-year.pipe';
 import { GalleriesComponent } from './components/galleries/galleries/galleries.component';
 import { GalleryItemComponent } from './components/galleries/gallery-item/gallery-item.component';
+import { GallerySearchComponent } from './components/galleries/gallery-search/gallery-search.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { GalleryItemComponent } from './components/galleries/gallery-item/galler
     SearchGalleriesPipe,
     SearchByYearPipe,
     GalleriesComponent,
-    GalleryItemComponent
+    GalleryItemComponent,
+    GallerySearchComponent
   ],
   imports: [
     BrowserModule,
