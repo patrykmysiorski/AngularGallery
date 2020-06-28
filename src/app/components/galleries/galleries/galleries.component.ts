@@ -27,6 +27,10 @@ export class GalleriesComponent implements OnInit {
   travelYearsSet;
   travelYearsArray = [];
   yearSearch: any = null;
+  limit: number;
+  start: number;
+  end: number;
+  currentPage: number;
 
   createSortedYearsArray = () => {
     this.travelYearsSet = new Set();
@@ -35,7 +39,7 @@ export class GalleriesComponent implements OnInit {
       this.travelYearsArray.push(parseInt(year, 10));
     });
     this.travelYearsArray.sort((a, b) => a - b);
-  };
+  }
 
   constructor(private http: HttpClient) {
     this.title = 'My travels';
@@ -98,8 +102,16 @@ export class GalleriesComponent implements OnInit {
     });
   }
 
+  setCurrentPage(page = 0) {
+    this.limit = 3;
+    this.currentPage = page;
+    this.start = this.currentPage * this.limit;
+    this.end = this.start + 3;
+  }
+
 
   ngOnInit(): void {
+    this.setCurrentPage();
   }
 
 }
