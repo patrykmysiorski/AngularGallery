@@ -21,14 +21,28 @@
     <!--TODO trackBY directive doesn`t work-->
     <app-gallery-item
       class="gallery"
-      *ngFor="let gallery of galleries | searchGalleries : searchValue | searchByYear : yearSearch;"
+      *ngFor="let gallery of galleries | searchGalleries : searchValue | searchByYear : yearSearch | slice:start:end;"
       [gallery]="gallery"
       (deleteGallery)="removeGallery($event)"
     >
     </app-gallery-item>
   </div>
-  <div class="buttons-container">
-    <button class="button btn btn-primary" (click)="exportGalleries()">Export galleries</button>
-    <button class="button btn btn-danger" (click)="removeGalleries()">Delete galleries</button>
+  <div class="paging-container" *ngIf="galleries">
+    <div class="">
+      <span [ngClass]="{'disabled-link':currentPage === 0}">
+        <a (click)="moveBack()">&lt;</a>
+      </span>
+      <span *ngFor="let item of numberOfPages; let i = index" [ngClass]="{'active-page':currentPage === i}">
+        <a (click)="setCurrentPage(i)">{{i + 1}}</a>
+      </span>
+      <span [ngClass]="{'disabled-link':currentPage === numberOfPages.length - 1}">
+        <a (click)="moveForward()">&gt;</a>
+      </span>
+    </div>
+    <p>Site {{currentPage + 1}} of {{numberOfPages.length}}</p>
   </div>
+    <div class="buttons-container">
+      <button class="button btn btn-primary" (click)="exportGalleries()">Export galleries</button>
+      <button class="button btn btn-danger" (click)="removeGalleries()">Delete galleries</button>
+    </div>
 </section>
