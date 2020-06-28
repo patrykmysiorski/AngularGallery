@@ -38,6 +38,10 @@ export class GalleriesComponent implements OnInit {
     this.createSortedYearsArray();
   }
 
+  setSearchValue($event) {
+    this.searchValue = $event;
+  }
+
   ngOnInit(): void {
   }
 
