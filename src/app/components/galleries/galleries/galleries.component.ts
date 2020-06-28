@@ -35,7 +35,7 @@ export class GalleriesComponent implements OnInit {
       this.travelYearsArray.push(parseInt(year, 10));
     });
     this.travelYearsArray.sort((a, b) => a - b);
-  }
+  };
 
   constructor(private http: HttpClient) {
     this.title = 'My travels';
@@ -69,6 +69,18 @@ export class GalleriesComponent implements OnInit {
       this.http.post('http://project.usagi.pl/gallery', gallery, this.httpOptions).toPromise().then((response: IGallery) => {
         console.log('success', response);
         this.galleries.push(response);
+      }, (errResponse) => {
+        console.log('error', errResponse);
+      });
+    });
+  }
+
+  removeGalleries() {
+    this.galleries.forEach((gallery: IGallery) => {
+      this.http.post('http://project.usagi.pl/gallery/delete/' +
+        gallery.galleryId, {}, this.httpOptions).toPromise().then((response) => {
+        this.galleries.splice(0, 1);
+        console.log('success', response);
       }, (errResponse) => {
         console.log('error', errResponse);
       });
