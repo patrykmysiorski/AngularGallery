@@ -49,7 +49,7 @@ export const Galleries = [
     galleryId: '3',
     title: 'Tajlandia',
     dateCreated: '2014-11-10T00:00:00+00:00',
-    thumbUrl: '/assets/img/galleries/box3/main.jpeg',
+    thumbUrl: '/assets/img/galleries/box5/main.jpeg',
     description: 'Dwa tygodnie wycieczki po Tajlandii.',
     tags: [],
     photos: []
