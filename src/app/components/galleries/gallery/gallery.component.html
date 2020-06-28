@@ -1,4 +1,4 @@
-<div class="main-flex-container">
+<div class="main-flex-container" *ngIf="gallery">
   <div class="header">
     <h1>{{gallery.title}}</h1>
     <p><small>{{gallery.dateCreated | date: 'longDate'}}</small></p>
