@@ -1,1 +1,62 @@
-<p>comment-form works!</p>
+<div class="form-container">
+  <h3>Comments</h3>
+  <form #commentForm="ngForm" novalidate>
+    <div class="row">
+      <div class="input-group" [ngClass]="{'input-error': (commentForm.controls['firstName']?.touched ||
+commentForm.submitted) && commentForm.controls['firstName']?.invalid}">
+        <label>First name</label>
+        <input
+          type="text"
+          class="input-control"
+          name="firstName"
+          [(ngModel)]="comment.firstName"
+          required>
+        <p class="error-text">This field is required</p>
+      </div>
+      <div class="input-group" [ngClass]="{'input-error': (commentForm.controls['firstName']?.touched ||
+commentForm.submitted) && commentForm.controls['firstName']?.invalid}">
+        <label>Last name</label>
+        <input
+          type="text"
+          class="input-control"
+          name="lastName"
+          [(ngModel)]="comment.lastName"
+          required>
+        <p class="error-text">This field is required</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-group" [ngClass]="{'input-error': (commentForm.controls['firstName']?.touched ||
+commentForm.submitted) && commentForm.controls['firstName']?.invalid}">
+        <label>Email</label>
+        <input
+          type="text"
+          class="input-control"
+          name="email"
+          [(ngModel)]="comment.email"
+          [pattern]="emailPattern"
+          required>
+        <p class="error-text">This field is required</p>
+        <p class="error-text"
+           *ngIf="commentForm.controls['email']?.errors?.pattern">Input correct email</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-group" [ngClass]="{'input-error': (commentForm.controls['firstName']?.touched ||
+commentForm.submitted) && commentForm.controls['firstName']?.invalid}">
+        <label>Message</label>
+        <input
+          type="text"
+          class="input-control"
+          name="message"
+          [(ngModel)]="comment.message"
+          required>
+        <p class="error-text">This field is required</p>
+      </div>
+    </div>
+    <button class="button button-success"
+            (click)="onSubmit()"
+            [disabled]="commentForm.submitted && commentForm.invalid">Send comment
+    </button>
+  </form>
+</div>
