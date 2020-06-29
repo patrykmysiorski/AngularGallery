@@ -13,8 +13,8 @@ commentForm.submitted) && commentForm.controls['firstName']?.invalid}">
           required>
         <p class="error-text">This field is required</p>
       </div>
-      <div class="input-group" [ngClass]="{'input-error': (commentForm.controls['firstName']?.touched ||
-commentForm.submitted) && commentForm.controls['firstName']?.invalid}">
+      <div class="input-group" [ngClass]="{'input-error': (commentForm.controls['lastName']?.touched ||
+commentForm.submitted) && commentForm.controls['lastName']?.invalid}">
         <label>Last name</label>
         <input
           type="text"
@@ -26,8 +26,8 @@ commentForm.submitted) && commentForm.controls['firstName']?.invalid}">
       </div>
     </div>
     <div class="row">
-      <div class="input-group" [ngClass]="{'input-error': (commentForm.controls['firstName']?.touched ||
-commentForm.submitted) && commentForm.controls['firstName']?.invalid}">
+      <div class="input-group" [ngClass]="{'input-error': (commentForm.controls['email']?.touched ||
+commentForm.submitted) && commentForm.controls['email']?.invalid}">
         <label>Email</label>
         <input
           type="text"
@@ -42,11 +42,11 @@ commentForm.submitted) && commentForm.controls['firstName']?.invalid}">
       </div>
     </div>
     <div class="row">
-      <div class="input-group" [ngClass]="{'input-error': (commentForm.controls['firstName']?.touched ||
-commentForm.submitted) && commentForm.controls['firstName']?.invalid}">
+      <div class="input-group" [ngClass]="{'input-error': (commentForm.controls['message']?.touched ||
+commentForm.submitted) && commentForm.controls['message']?.invalid}">
         <label>Message</label>
         <input
-          type="text"
+          type="textarea"
           class="input-control"
           name="message"
           [(ngModel)]="comment.message"
