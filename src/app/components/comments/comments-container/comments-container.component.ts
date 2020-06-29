@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {IComment} from '../../../../intefaces/IComments';
 
 @Component({
   selector: 'app-comments-container',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommentsContainerComponent implements OnInit {
 
-  constructor() { }
+  @Input() comments: IComment[]
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
-
 }
