@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
 import { GalleryComponent } from './components/galleries/gallery/gallery.component';
 import { CommentFormComponent } from './components/comments/comment-form/comment-form.component';
+import { CommentsContainerComponent } from './components/comments/comments-container/comments-container.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CommentFormComponent } from './components/comments/comment-form/comment
     GallerySearchByYearComponent,
     DashboardComponent,
     GalleryComponent,
-    CommentFormComponent
+    CommentFormComponent,
+    CommentsContainerComponent
   ],
   imports: [
     BrowserModule,
