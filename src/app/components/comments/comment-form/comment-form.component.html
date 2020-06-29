@@ -45,18 +45,19 @@ commentForm.submitted) && commentForm.controls['email']?.invalid}">
       <div class="input-group" [ngClass]="{'input-error': (commentForm.controls['message']?.touched ||
 commentForm.submitted) && commentForm.controls['message']?.invalid}">
         <label>Message</label>
-        <input
-          type="textarea"
+        <textarea
+          type="text"
           class="input-control"
           name="message"
           [(ngModel)]="comment.message"
           required>
+        </textarea>
         <p class="error-text">This field is required</p>
       </div>
     </div>
     <button class="button button-success"
             (click)="onSubmit()"
-            [disabled]="commentForm.submitted && commentForm.invalid">Send comment
+            [disabled]="commentForm.submitted || commentForm.invalid || commentForm.pristine">Send comment
     </button>
   </form>
 </div>
