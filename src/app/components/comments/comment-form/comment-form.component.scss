@@ -5,6 +5,8 @@
 .form-container {
   display: flex;
   flex-direction: column;
+  margin-top: 180px;
+  align-items: center;
 }
 
 .input-group {
@@ -22,4 +24,13 @@ label {
 
 textarea {
   color: black;
+}
+
+h3 {
+  margin-left: -20px;
+  margin-bottom: 10px;
+}
+
+form {
+  max-width: 80%;
 }
