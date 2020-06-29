@@ -13,6 +13,7 @@ import { GallerySearchByYearComponent } from './components/galleries/gallery-sea
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './components/dashboard/dashboard/dashboard.component';
 import { GalleryComponent } from './components/galleries/gallery/gallery.component';
+import { CommentFormComponent } from './components/comments/comment-form/comment-form.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { GalleryComponent } from './components/galleries/gallery/gallery.compone
     GallerySearchComponent,
     GallerySearchByYearComponent,
     DashboardComponent,
-    GalleryComponent
+    GalleryComponent,
+    CommentFormComponent
   ],
   imports: [
     BrowserModule,
