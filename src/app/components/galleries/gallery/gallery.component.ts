@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {IGallery} from '../../../../intefaces/IGallery';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {IComment} from '../../../../intefaces/IComments';
+import {httpOptions} from '../../../constants/httpUtils';
 
 @Component({
   selector: 'app-gallery',
@@ -11,14 +12,7 @@ import {IComment} from '../../../../intefaces/IComments';
 })
 export class GalleryComponent implements OnInit {
 
-  httpOptions = {
-    headers: new HttpHeaders(
-      {
-        'Content-Type': 'application/json',
-        Authorization: '104'
-      }
-    )
-  };
+  httpOptions = httpOptions;
 
   private galleryId: string;
   gallery: IGallery;

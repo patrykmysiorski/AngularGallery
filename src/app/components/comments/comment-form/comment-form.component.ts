@@ -3,6 +3,7 @@ import {IComment} from '../../../../intefaces/IComments';
 import {NgForm} from '@angular/forms';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
+import {httpOptions} from '../../../constants/httpUtils';
 
 @Component({
   selector: 'app-comment-form',
@@ -13,14 +14,7 @@ export class CommentFormComponent implements OnInit {
   @ViewChild('commentForm', {static: false})
   commentForm: NgForm;
 
-  httpOptions = {
-    headers: new HttpHeaders(
-      {
-        'Content-Type': 'application/json',
-        Authorization: '104'
-      }
-    )
-  };
+  httpOptions = httpOptions;
 
   @Input() galleryId: string;
   comment: IComment;

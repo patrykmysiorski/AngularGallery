@@ -3,6 +3,7 @@ import {IGallery} from '../../../../intefaces/IGallery';
 import {Galleries} from '../../../constants/galleries.constant';
 import * as moment from 'moment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {httpOptions} from '../../../constants/httpUtils';
 
 @Component({
   selector: 'app-galleries',
@@ -11,14 +12,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 export class GalleriesComponent implements OnInit {
 
-  httpOptions = {
-    headers: new HttpHeaders(
-      {
-        'Content-Type': 'application/json',
-        Authorization: '104'
-      }
-    )
-  };
+  httpOptions = httpOptions;
 
   title = 'AngularGallery';
   description: string;
