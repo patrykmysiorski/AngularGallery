@@ -1,6 +1,15 @@
 .main-flex-container {
   display: flex;
+  max-width: 1200px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.gallery-flex-container {
+  display: flex;
   flex-direction: column;
+  max-width: 65%;
+  background-color: black;
 }
 
 .header {
@@ -61,4 +70,10 @@ span {
   object-fit: contain;
   border: 1px solid white;
   padding: 5px;
+}
+
+.comment-section {
+  min-width: 250px;
+  background-color: red;
+  height: 150px;
 }

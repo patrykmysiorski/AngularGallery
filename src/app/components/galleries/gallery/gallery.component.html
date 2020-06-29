@@ -1,18 +1,23 @@
-<div class="main-flex-container" *ngIf="gallery">
-  <div class="header">
-    <h1>{{gallery.title}}</h1>
-    <p><small>{{gallery.dateCreated | date: 'longDate'}}</small></p>
-    <h3>{{gallery.description}}</h3>
-    <div class="tags">
-      <span *ngFor="let tag of gallery.tags">{{tag}}</span>
+<div class="main-flex-container">
+  <div class="gallery-flex-container" *ngIf="gallery">
+    <div class="header">
+      <h1>{{gallery.title}}</h1>
+      <p><small>{{gallery.dateCreated | date: 'longDate'}}</small></p>
+      <h3>{{gallery.description}}</h3>
+      <div class="tags">
+        <span *ngFor="let tag of gallery.tags">{{tag}}</span>
+      </div>
+    </div>
+    <div class="main-photo">
+      <img src="{{gallery.thumbUrl}}" alt="image not found">
+    </div>
+    <div class="other-photos">
+      <div class="other-photo" *ngFor="let image of gallery.photos">
+        <img alt="image not found" src="{{image.thumbUrl}}">
+      </div>
     </div>
   </div>
-  <div class="main-photo">
-    <img src="{{gallery.thumbUrl}}" alt="image not found">
-  </div>
-  <div class="other-photos">
-    <div class="other-photo"  *ngFor="let image of gallery.photos" >
-      <img alt="image not found"src="{{image.thumbUrl}}">
-    </div>
+  <div class="comment-section">
+    <app-comment-form [galleryId]="gallery.galleryId"></app-comment-form>
   </div>
 </div>
