@@ -5,6 +5,6 @@
     <p class="comment-message">{{comment.message}}</p>
   </div>
   <div class="delete-button">
-    <button class="btn btn-danger">delete</button>
+    <button class="btn btn-danger" (click)="onDelete(comment.commentId)">delete</button>
   </div>
 </div>

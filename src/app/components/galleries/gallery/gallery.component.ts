@@ -28,6 +28,10 @@ export class GalleryComponent implements OnInit {
     this.comments.push(event);
   }
 
+  deleteComment(commentId) {
+    this.comments = this.comments.filter(comment => comment.commentId !== commentId);
+  }
+
   constructor(private route: ActivatedRoute, private http: HttpClient) {
   }
 

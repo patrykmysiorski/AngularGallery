@@ -1,5 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IComment} from '../../../../intefaces/IComments';
+import {httpOptions} from '../../../constants/httpUtils';
+import {ActivatedRoute} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-comments-container',
@@ -8,9 +11,20 @@ import {IComment} from '../../../../intefaces/IComments';
 })
 export class CommentsContainerComponent implements OnInit {
 
-  @Input() comments: IComment[]
+  @Output() deleteComment = new EventEmitter();
 
-  constructor() {
+  @Input() comments: IComment[];
+
+  httpOptions = httpOptions;
+
+  onDelete(commentId) {
+    const url = 'http://project.usagi.pl/comment/delete/' + commentId;
+    this.http.post(url, {}, this.httpOptions).toPromise().then(() => {
+      this.deleteComment.emit(commentId);
+    });
+  }
+
+  constructor(private route: ActivatedRoute, private http: HttpClient) {
   }
 
   ngOnInit(): void {

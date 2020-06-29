@@ -16,7 +16,7 @@
         <img alt="image not found" src="{{image.thumbUrl}}">
       </div>
     </div>
-    <app-comments-container *ngIf="gallery" [comments]="comments"></app-comments-container>
+    <app-comments-container *ngIf="gallery" [comments]="comments" (deleteComment)="deleteComment($event)"></app-comments-container>
   </div>
   <div class="comment-section" *ngIf="gallery">
     <app-comment-form [galleryId]="gallery.galleryId" (addComment)="updateComments($event)"></app-comment-form>
