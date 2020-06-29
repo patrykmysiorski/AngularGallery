@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {IComment} from '../../../../intefaces/IComments';
 import {NgForm} from '@angular/forms';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
@@ -27,6 +27,9 @@ export class CommentFormComponent implements OnInit {
 
   emailPattern = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
 
+  @Output()
+  addComment = new EventEmitter();
+
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {
   }
@@ -39,6 +42,7 @@ export class CommentFormComponent implements OnInit {
     this.http.post(`http://project.usagi.pl/comment`, this.comment,
       this.httpOptions).toPromise().then((response: IComment) => {
       console.log(response);
+      this.addComment.emit(response);
     });
     this.commentForm.resetForm();
     this.comment = this.setEmptyComment();
