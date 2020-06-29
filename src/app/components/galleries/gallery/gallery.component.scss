@@ -1,6 +1,15 @@
 .main-flex-container {
   display: flex;
+  max-width: 1200px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.gallery-flex-container {
+  display: flex;
   flex-direction: column;
+  max-width: 65%;
+  margin: auto;
 }
 
 .header {
@@ -31,19 +40,20 @@ span {
 
 .main-photo {
   margin-top: 50px;
-  max-width: 700px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .main-photo img {
-  width: 100%;
-  object-fit: contain;
+  max-width: 80%;
   border: 1px solid white;
   padding: 5px;
+  height: auto;
+  border-radius: 4px;
 }
 
 .other-photos {
   display: flex;
-  max-width: 1100px;
   flex-wrap: wrap;
   margin-top: 40px;
   justify-content: center;
@@ -61,4 +71,9 @@ span {
   object-fit: contain;
   border: 1px solid white;
   padding: 5px;
+}
+
+.comment-section {
+  min-width: 250px;
+  height: 150px;
 }
