@@ -1,1 +1,10 @@
-<p>comments-container works!</p>
+<div class="comments-container" *ngFor="let comment of comments">
+  <div class="comment">
+    <h5>Author: {{comment.firstName}}</h5>
+    <p><small>{{comment.dateCreated}}</small></p>
+    <p class="comment-message">{{comment.message}}</p>
+  </div>
+  <div class="delete-button">
+    <button class="btn btn-danger">delete</button>
+  </div>
+</div>
