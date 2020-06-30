@@ -18,8 +18,18 @@ export class GalleryComponent implements OnInit {
   gallery: IGallery;
   comments: IComment[];
 
-  addTag(event) {
+  addTag(tag: string) {
+    console.log(tag);
+    const index = this.gallery.tags.findIndex(item => item.tag === tag);
+    if (index === -1) {
+      this.gallery.tags.push(tag);
 
+
+      this.http.post(`http://project.usagi.pl/gallery/${this.gallery.galleryId}`,
+        this.gallery, this.httpOptions).toPromise().then((response: IGallery) => {
+        this.gallery = response;
+      });
+    }
   }
 
   updateComments(event) {
