@@ -1,5 +1,5 @@
 <div class="form-container">
-  <h3>Edit gallery</h3>
+  <h3>{{header}}</h3>
   <form #galleryEditForm="ngForm" novalidate>
     <div class="row">
       <div class="input-group" [ngClass]="{'input-error': (galleryEditForm.controls['title']?.touched ||

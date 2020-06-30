@@ -1,58 +1,5 @@
-.flex-container-galleries {
-  max-width: 1100px;
-  margin: 20px auto 20px auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.gallery {
-  width: 320px;
-  max-height: 320px;
-  margin: 10px 10px 20px 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 img {
   max-width: 320px;
   height: 226px;
   //object-fit: contain;
-}
-
-.header-flex-container {
-  display: flex;
-  align-items: center;
-}
-
-.year-flex-container {
-  display: flex;
-  justify-content: start;
-  width: 30%;
-  max-width: 300px;
-  margin-left: 30px;
-}
-
-li {
-  margin-right: 15px;
-}
-
-.search-box {
-  margin-left: 30px;
-  color: black;
-}
-
-.buttons-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 50px;
-  margin-bottom: 40px;
-  flex-wrap: wrap;
-}
-
-.button {
-  margin-right: 30px;
 }

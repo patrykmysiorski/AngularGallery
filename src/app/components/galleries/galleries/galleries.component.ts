@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {IGallery} from '../../../../intefaces/IGallery';
 import {Galleries} from '../../../constants/galleries.constant';
 import * as moment from 'moment';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {httpOptions} from '../../../constants/httpUtils';
 
 @Component({
@@ -26,14 +26,41 @@ export class GalleriesComponent implements OnInit {
   end: number;
   currentPage: number;
   numberOfPages: any;
+  addGalleryActive: boolean = false;
+  gallery: IGallery;
+
+  @Output() clearValues = new EventEmitter();
+
+  onGallerySave(gallery) {
+    this.http.post('http://project.usagi.pl/gallery', gallery, this.httpOptions).toPromise().then((response: IGallery) => {
+      console.log('success', response);
+      this.setCurrentPage();
+      this.galleries.push(response);
+      this.numberOfPages = this.calculateNumberOfPages();
+      this.addGalleryActive = !this.addGalleryActive;
+      this.travelYearsArray = this.createSortedYearsArray();
+    }, (errResponse) => {
+      console.log('error', errResponse);
+    });
+    this.searchValue = '';
+    this.yearSearch = '';
+  }
+
+  onGalleryEdiClose() {
+    this.addGalleryActive = !this.addGalleryActive;
+  }
 
   createSortedYearsArray = () => {
-    this.travelYearsSet = new Set();
-    Galleries.map(travel => this.travelYearsSet.add(moment(travel.dateCreated).format('yyyy')));
-    this.travelYearsSet.forEach(year => {
-      this.travelYearsArray.push(parseInt(year, 10));
+    let years = [];
+    let yearsSet;
+    yearsSet = new Set();
+    console.log(this.galleries);
+    this.galleries.map(travel => yearsSet.add(moment(travel.dateCreated).format('yyyy')));
+    yearsSet.forEach(year => {
+      years.push(parseInt(year, 10));
     });
-    this.travelYearsArray.sort((a, b) => a - b);
+    years = years.sort((a, b) => a - b);
+    return years;
   };
 
   constructor(private http: HttpClient) {
@@ -44,12 +71,16 @@ export class GalleriesComponent implements OnInit {
     this.createSortedYearsArray();
   }
 
+  setAddGalleryActive() {
+    this.addGalleryActive = true;
+  }
+
   fetchGalleries() {
     this.galleries = [];
     this.http.get('http://project.usagi.pl/gallery', this.httpOptions).toPromise().then((response: IGallery[]) => {
       this.galleries = response;
-      this.numberOfPages = Array(Math.ceil(this.galleries.length /
-        this.limit)).fill(1);
+      this.numberOfPages = this.calculateNumberOfPages();
+      this.travelYearsArray = this.createSortedYearsArray();
     });
     return this.galleries;
   }
@@ -68,9 +99,9 @@ export class GalleriesComponent implements OnInit {
 
       this.http.post('http://project.usagi.pl/gallery', gallery, this.httpOptions).toPromise().then((response: IGallery) => {
         console.log('success', response);
-        this.numberOfPages = Array(Math.ceil(this.galleries.length /
-          this.limit)).fill(1);
-        this.galleries.push(response);
+        this.numberOfPages = this.calculateNumberOfPages();
+        this.galleries = this.galleries.concat(response);
+        this.travelYearsArray = this.createSortedYearsArray();
       }, (errResponse) => {
         console.log('error', errResponse);
       });
@@ -81,9 +112,10 @@ export class GalleriesComponent implements OnInit {
     this.galleries.forEach((gallery: IGallery) => {
       this.http.post('http://project.usagi.pl/gallery/delete/' +
         gallery.galleryId, {}, this.httpOptions).toPromise().then((response) => {
-        this.galleries.splice(0, 1);
-        this.numberOfPages = Array(Math.ceil(this.galleries.length /
-          this.limit)).fill(1);
+        this.galleries = [];
+        this.numberOfPages = this.calculateNumberOfPages();
+        this.setCurrentPage();
+        this.travelYearsArray = this.createSortedYearsArray();
         console.log('success', response);
       }, (errResponse) => {
         console.log('error', errResponse);
@@ -91,14 +123,26 @@ export class GalleriesComponent implements OnInit {
     });
   }
 
+  calculateNumberOfPages(): any {
+    let numberOfPages = Array(Math.ceil(this.galleries.length /
+      this.limit)).fill(1);
+    if (numberOfPages[0] == undefined) {
+      numberOfPages[0] = 1;
+    }
+    return numberOfPages;
+  }
+
   removeGallery(galleryId) {
-    const index = this.galleries.findIndex((gallery: IGallery) =>
-      gallery.galleryId === galleryId);
     this.http.post('http://project.usagi.pl/gallery/delete/' + galleryId,
       {}, this.httpOptions).toPromise().then((response) => {
-      this.galleries.splice(index, 1);
-      this.numberOfPages = Array(Math.ceil(this.galleries.length /
-        this.limit)).fill(1);
+      this.galleries = this.galleries.filter((gallery: IGallery) => {
+        return gallery.galleryId !== galleryId;
+      });
+      this.travelYearsArray = this.createSortedYearsArray();
+      this.numberOfPages = this.calculateNumberOfPages();
+      if (this.galleries.length % 3 === 0 && this.currentPage != 0) {
+        this.setCurrentPage(this.currentPage - 1);
+      }
       console.log('success', response);
     }, (errResponse) => {
       console.log('error', errResponse);
@@ -125,8 +169,7 @@ export class GalleriesComponent implements OnInit {
     this.http.get('http://project.usagi.pl/gallery',
       this.httpOptions).toPromise().then((response: IGallery[]) => {
       this.galleries = response;
-      this.numberOfPages = Array(Math.ceil(this.galleries.length /
-        this.limit)).fill(1);
+      this.numberOfPages = this.calculateNumberOfPages();
     });
     this.currentPage = parseInt(localStorage.getItem('galleryPage')) || 0;
     this.setCurrentPage(this.currentPage);
