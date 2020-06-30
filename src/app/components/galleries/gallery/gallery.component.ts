@@ -4,6 +4,7 @@ import {IGallery} from '../../../../intefaces/IGallery';
 import {HttpClient} from '@angular/common/http';
 import {IComment} from '../../../../intefaces/IComments';
 import {httpOptions} from '../../../constants/httpUtils';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-gallery',
@@ -127,11 +128,15 @@ export class GalleryComponent implements OnInit {
     this.comments = this.comments.filter(comment => comment.commentId !== commentId);
   }
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) {
+  constructor(private route: ActivatedRoute, private http: HttpClient, private _location: Location) {
   }
 
   createGalleryCopy() {
     this.galleryCopy = {...this.gallery};
+  }
+
+  backToGalleries() {
+    this._location.back();
   }
 
   ngOnInit(): void {
