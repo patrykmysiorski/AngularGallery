@@ -114,13 +114,13 @@ export class GalleriesComponent implements OnInit {
   }
 
   removeGallery(galleryId) {
-    const index = this.galleries.findIndex((gallery: IGallery) =>
-      gallery.galleryId === galleryId);
     this.http.post('http://project.usagi.pl/gallery/delete/' + galleryId,
       {}, this.httpOptions).toPromise().then((response) => {
-      this.galleries.splice(index, 1);
       this.numberOfPages = Array(Math.ceil(this.galleries.length /
         this.limit)).fill(1);
+      this.galleries = this.galleries.filter((gallery: IGallery) => {
+        return gallery.galleryId !== galleryId;
+      });
       console.log('success', response);
     }, (errResponse) => {
       console.log('error', errResponse);
