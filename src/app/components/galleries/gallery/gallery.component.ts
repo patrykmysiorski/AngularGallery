@@ -19,17 +19,23 @@ export class GalleryComponent implements OnInit {
   comments: IComment[];
 
   addTag(tag: string) {
-    console.log(tag);
-    const index = this.gallery.tags.findIndex(item => item.tag === tag);
+    const tagUpper = tag.toUpperCase();
+    const index = this.gallery.tags.findIndex(tag => {
+      return tag === tagUpper;
+    });
     if (index === -1) {
-      this.gallery.tags.push(tag);
-
-
+      this.gallery.tags.push(tagUpper);
       this.http.post(`http://project.usagi.pl/gallery/${this.gallery.galleryId}`,
         this.gallery, this.httpOptions).toPromise().then((response: IGallery) => {
         this.gallery = response;
       });
     }
+  }
+
+  convertTagsToUpperCase(response) {
+    const tags = response.tags;
+    const upperCaseTags = tags.map((tag: string) => tag.toUpperCase());
+    return this.gallery = {...response, tags: upperCaseTags};
   }
 
   updateComments(event) {
@@ -47,11 +53,10 @@ export class GalleryComponent implements OnInit {
     this.galleryId = this.route.snapshot.paramMap.get('galleryId');
     const url = 'http://project.usagi.pl/gallery/' + this.galleryId;
     this.http.get(url, this.httpOptions).toPromise().then((response: IGallery) => {
-      this.gallery = response;
+      this.gallery = this.convertTagsToUpperCase(response);
     });
     const urlForComments = 'http://project.usagi.pl/comment/byGallery/' + this.galleryId;
     this.http.get(urlForComments, this.httpOptions).toPromise().then((response: IComment[]) => {
-      console.log('response', response);
       this.comments = response;
     });
   }
