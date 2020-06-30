@@ -4,12 +4,14 @@
       <h1>{{gallery.title}}</h1>
       <p><small>{{gallery.dateCreated | date: 'longDate'}}</small></p>
       <h3>{{gallery.description}}</h3>
-      <div class="tags">
-        <span *ngFor="let tag of gallery.tags">{{tag}}</span>
+      <div class="tags-container">
+        <div class="tags">
+          <span *ngFor="let tag of gallery.tags">{{tag}}</span>
+        </div>
+        <app-gallery-tag-form
+          (addTag)="addTag($event)"
+        ></app-gallery-tag-form>
       </div>
-      <app-gallery-tag-form
-        (addTag)="addTag($event)"
-      ></app-gallery-tag-form>
     </div>
     <div class="main-photo">
       <img src="{{gallery.thumbUrl}}" alt="image not found">
