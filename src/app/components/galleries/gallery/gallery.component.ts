@@ -18,13 +18,16 @@ export class GalleryComponent implements OnInit {
   gallery: IGallery;
   comments: IComment[];
   showPhotoForm: boolean;
+  showCommentForm: boolean = true;
 
   openPhotoForm() {
     this.showPhotoForm = true;
+    this.showCommentForm = false;
   }
 
   closePhotoForm() {
     this.showPhotoForm = false;
+    this.showCommentForm = true;
   }
 
 
@@ -39,6 +42,7 @@ export class GalleryComponent implements OnInit {
     const databasePhoto = {...photo, photoId: this.generatePhotoId()};
     this.gallery.photos.push(databasePhoto);
     this.updateGallery();
+    this.showPhotoForm = false;
   }
 
   deletePhoto(photoId) {

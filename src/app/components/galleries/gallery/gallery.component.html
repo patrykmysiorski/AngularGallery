@@ -34,7 +34,8 @@
     </app-comments-container>
   </div>
   <div class="comment-section" *ngIf="gallery">
-    <app-comment-form [galleryId]="gallery.galleryId" (addComment)="updateComments($event)"></app-comment-form>
+    <app-comment-form [galleryId]="gallery.galleryId" (addComment)="updateComments($event)"
+                      *ngIf="showCommentForm"></app-comment-form>
 
     <app-gallery-photo-form
       (addPhoto)="addPhoto($event)"
