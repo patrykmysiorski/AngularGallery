@@ -1,0 +1,56 @@
+<div class="form-container">
+  <h3>Edit gallery</h3>
+  <form #galleryEditForm="ngForm" novalidate>
+    <div class="row">
+      <div class="input-group" [ngClass]="{'input-error': (galleryEditForm.controls['title']?.touched ||
+galleryEditForm.submitted) && galleryEditForm.controls['title']?.invalid}">
+        <label>Gallery title</label>
+        <input
+          type="text"
+          class="input-control"
+          name="title"
+          [(ngModel)]="gallery.title"
+          required>
+        <p class="error-text">This field is required</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-group" [ngClass]="{'input-error': (galleryEditForm.controls['photo']?.touched ||
+galleryEditForm.submitted) && galleryEditForm.controls['photo']?.invalid}">
+        <label>Gallery main photo</label>
+        <input
+          type="text"
+          class="input-control"
+          name="thumbUrl"
+          [(ngModel)]="gallery.thumbUrl"
+          required>
+        <p class="error-text">This field is required</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-group" [ngClass]="{'input-error': (galleryEditForm.controls['description']?.touched ||
+galleryEditForm.submitted) && galleryEditForm.controls['description']?.invalid}">
+        <label>Gallery description</label>
+        <textarea
+          type="text"
+          class="input-control"
+          name="description"
+          [(ngModel)]="gallery.description"
+          required>
+        </textarea>
+        <p class="error-text">This field is required</p>
+      </div>
+    </div>
+    <div class="button-group">
+      <button class="button button-success"
+              [disabled]="galleryEditForm.invalid && galleryEditForm.submitted"
+              (click)="onSaveChanges()">
+        Save changes
+      </button>
+      <button type="button" class="button button-default"
+              (click)="onCancel()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
