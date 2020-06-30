@@ -36,7 +36,29 @@ export class GalleryComponent implements OnInit {
   }
 
   addPhoto(photo) {
+    const databasePhoto = {...photo, photoId: this.generatePhotoId()};
+    this.gallery.photos.push(databasePhoto);
+    this.updateGallery();
+  }
 
+  deletePhoto(photoId) {
+    const index = this.gallery.photos.findIndex(photo => {
+      return photo.photoId === photoId;
+    });
+
+    this.gallery.photos.splice(index, 1);
+    this.updateGallery();
+  }
+
+  generatePhotoId() {
+    let lastId = '';
+    if (this.gallery.photos.length > 0) {
+      lastId = this.gallery.photos[this.gallery.photos.length - 1].photoId;
+    } else {
+      lastId = '-1';
+    }
+    const newId = parseInt(lastId) + 1;
+    return newId;
   }
 
   removeTag(tag) {

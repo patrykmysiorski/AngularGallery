@@ -71,6 +71,7 @@ span {
   max-height: 300px;
   margin-right: 20px;
   margin-bottom: 10px;
+  position: relative;
 }
 
 .other-photos img {
@@ -97,4 +98,12 @@ span {
 
 .add-photo-button {
   margin: 10px 0;
+}
+
+.delete-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 20px;
+  padding: 5px;
 }

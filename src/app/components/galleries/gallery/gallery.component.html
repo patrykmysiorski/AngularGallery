@@ -24,6 +24,7 @@
     <div class="other-photos">
       <div class="other-photo" *ngFor="let image of gallery.photos">
         <img alt="image not found" src="{{image.thumbUrl}}">
+        <i class="fa fa-remove delete-button" (click)="deletePhoto(image.photoId)"></i>
       </div>
       <button class="button button-success add-photo-button" (click)="openPhotoForm()">Add Photo
       </button>
