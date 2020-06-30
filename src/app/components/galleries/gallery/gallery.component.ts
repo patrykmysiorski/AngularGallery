@@ -18,6 +18,10 @@ export class GalleryComponent implements OnInit {
   gallery: IGallery;
   comments: IComment[];
 
+  addTag(event) {
+
+  }
+
   updateComments(event) {
     this.comments.push(event);
   }

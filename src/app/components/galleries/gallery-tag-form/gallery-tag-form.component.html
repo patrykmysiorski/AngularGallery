@@ -1,0 +1,15 @@
+<form #tagForm="ngForm">
+  <input
+    type="text"
+    class="input-control"
+    name="galleryTag"
+    [(ngModel)]="tag"
+    placeholder="Dodaj znacznik"
+    required>
+  <button class="button button-success"
+          type="button"
+          (click)="onSubmit()"
+          [disabled]="tagForm.invalid">
+    <i class="fa fa-plus"></i>
+  </button>
+</form>
