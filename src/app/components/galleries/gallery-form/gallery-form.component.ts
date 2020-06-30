@@ -44,7 +44,6 @@ export class GalleryFormComponent implements OnInit {
   }
 
   private resetForm() {
-    console.log(this.gallery.title);
     this.editGallery.controls['title'].setErrors(null);
     this.editGallery.controls['title'].setValue(this.gallery.title);
     this.editGallery.controls['thumbUrl'].setErrors(null);
@@ -54,7 +53,6 @@ export class GalleryFormComponent implements OnInit {
   }
 
   onSaveChanges() {
-    console.log(this.gallery);
     this.savedGallery.emit(this.gallery);
   }
 

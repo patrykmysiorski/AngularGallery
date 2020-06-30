@@ -54,6 +54,11 @@ export class GalleryComponent implements OnInit {
   }
 
   updateGallery() {
+    if (this.gallery.thumbUrl === '' || this.gallery.thumbUrl == undefined && this.gallery.photos.length < 2) {
+      this.gallery = {...this.gallery, thumbUrl: this.gallery.photos[0].thumbUrl};
+    } else {
+      this.gallery = {...this.gallery};
+    }
     this.http.post(`http://project.usagi.pl/gallery/${this.gallery.galleryId}`,
       this.gallery, this.httpOptions).toPromise().then((response: IGallery) => {
       this.gallery = response;
