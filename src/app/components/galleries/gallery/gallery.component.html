@@ -46,6 +46,7 @@
     <app-gallery-form *ngIf="showEditGalleryForm"
                       [gallery]="galleryCopy" (savedGallery)="onGallerySave($event)"
                       (closeForm)="onGalleryEdiClose()"
+                      [header]="'Edit gallery'"
     >
     </app-gallery-form>
   </div>

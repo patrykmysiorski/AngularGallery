@@ -1,7 +1,7 @@
 import {IPhoto} from './IPhoto';
 
 export class IGallery {
-  galleryId: string;
+  galleryId?: string;
   title: string;
   dateCreated: string;
   thumbUrl: string;

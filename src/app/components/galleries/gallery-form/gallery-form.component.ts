@@ -13,6 +13,8 @@ export class GalleryFormComponent implements OnInit {
 
   @Input() gallery: IGallery;
 
+  @Input() header: string;
+
   @Output() savedGallery = new EventEmitter();
 
   @Output() closeForm = new EventEmitter();
@@ -20,10 +22,20 @@ export class GalleryFormComponent implements OnInit {
   constructor() {
   }
 
-  galleryCopy: IGallery;
+  defaultGallery() {
+    const gallery: IGallery = {
+      title: '',
+      dateCreated: new Date().toDateString(),
+      thumbUrl: '',
+      description: '',
+      tags: [],
+      photos: []
+    };
+    return gallery;
+  }
 
   ngOnInit(): void {
-    this.galleryCopy = {...this.gallery};
+    this.gallery = (!!this.gallery) ? {...this.gallery} : this.defaultGallery();
   }
 
   onCancel() {
@@ -34,14 +46,15 @@ export class GalleryFormComponent implements OnInit {
   private resetForm() {
     console.log(this.gallery.title);
     this.editGallery.controls['title'].setErrors(null);
-    this.editGallery.controls['title'].setValue(this.galleryCopy.title);
+    this.editGallery.controls['title'].setValue(this.gallery.title);
     this.editGallery.controls['thumbUrl'].setErrors(null);
-    this.editGallery.controls['thumbUrl'].setValue(this.galleryCopy.thumbUrl);
+    this.editGallery.controls['thumbUrl'].setValue(this.gallery.thumbUrl);
     this.editGallery.controls['description'].setErrors(null);
-    this.editGallery.controls['description'].setValue(this.galleryCopy.description);
+    this.editGallery.controls['description'].setValue(this.gallery.description);
   }
 
   onSaveChanges() {
+    console.log(this.gallery);
     this.savedGallery.emit(this.gallery);
   }
 

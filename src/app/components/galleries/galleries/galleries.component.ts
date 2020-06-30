@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {IGallery} from '../../../../intefaces/IGallery';
 import {Galleries} from '../../../constants/galleries.constant';
 import * as moment from 'moment';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {httpOptions} from '../../../constants/httpUtils';
 
 @Component({
@@ -26,6 +26,24 @@ export class GalleriesComponent implements OnInit {
   end: number;
   currentPage: number;
   numberOfPages: any;
+  addGalleryActive: boolean = false;
+  gallery: IGallery;
+
+  onGallerySave(gallery) {
+    this.http.post('http://project.usagi.pl/gallery', gallery, this.httpOptions).toPromise().then((response: IGallery) => {
+      console.log('success', response);
+      this.numberOfPages = Array(Math.ceil(this.galleries.length /
+        this.limit)).fill(1);
+      this.galleries.push(response);
+      this.addGalleryActive = !this.addGalleryActive;
+    }, (errResponse) => {
+      console.log('error', errResponse);
+    });
+  }
+
+  onGalleryEdiClose() {
+    this.addGalleryActive = !this.addGalleryActive;
+  }
 
   createSortedYearsArray = () => {
     this.travelYearsSet = new Set();
@@ -42,6 +60,10 @@ export class GalleriesComponent implements OnInit {
     this.galleries = this.fetchGalleries();
     this.searchValue = '';
     this.createSortedYearsArray();
+  }
+
+  setAddGalleryActive() {
+    this.addGalleryActive = true;
   }
 
   fetchGalleries() {
