@@ -41,6 +41,8 @@ export class GalleriesComponent implements OnInit {
     }, (errResponse) => {
       console.log('error', errResponse);
     });
+    this.searchValue = '';
+    this.yearSearch = '';
   }
 
   onGalleryEdiClose() {
