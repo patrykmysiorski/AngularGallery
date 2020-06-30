@@ -4,8 +4,18 @@
       <h1>{{gallery.title}}</h1>
       <p><small>{{gallery.dateCreated | date: 'longDate'}}</small></p>
       <h3>{{gallery.description}}</h3>
-      <div class="tags">
-        <span *ngFor="let tag of gallery.tags">{{tag}}</span>
+      <div class="tags-container">
+        <div class="tags">
+          <div class="tag" *ngFor="let tag of gallery.tags">
+            <span>
+              {{tag}}
+            </span>
+            <i class="fa fa-remove" (click)="removeTag(tag)"></i>
+          </div>
+          <app-gallery-tag-form
+            (addTag)="addTag($event)"
+          ></app-gallery-tag-form>
+        </div>
       </div>
     </div>
     <div class="main-photo">
@@ -14,11 +24,23 @@
     <div class="other-photos">
       <div class="other-photo" *ngFor="let image of gallery.photos">
         <img alt="image not found" src="{{image.thumbUrl}}">
+        <i class="fa fa-remove delete-button" (click)="deletePhoto(image.photoId)"></i>
       </div>
+      <button class="button button-success add-photo-button" (click)="openPhotoForm()">Add Photo
+      </button>
     </div>
-    <app-comments-container *ngIf="gallery" [comments]="comments" (deleteComment)="deleteComment($event)"></app-comments-container>
+    <app-comments-container *ngIf="gallery" [comments]="comments"
+                            (deleteComment)="deleteComment($event)">
+    </app-comments-container>
   </div>
   <div class="comment-section" *ngIf="gallery">
-    <app-comment-form [galleryId]="gallery.galleryId" (addComment)="updateComments($event)"></app-comment-form>
+    <app-comment-form [galleryId]="gallery.galleryId" (addComment)="updateComments($event)"
+                      *ngIf="showCommentForm"></app-comment-form>
+
+    <app-gallery-photo-form
+      (addPhoto)="addPhoto($event)"
+      (closeForm)="closePhotoForm()"
+      *ngIf="showPhotoForm"
+    ></app-gallery-photo-form>
   </div>
 </div>

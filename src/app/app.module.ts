@@ -15,6 +15,8 @@ import { DashboardComponent } from './components/dashboard/dashboard/dashboard.c
 import { GalleryComponent } from './components/galleries/gallery/gallery.component';
 import { CommentFormComponent } from './components/comments/comment-form/comment-form.component';
 import { CommentsContainerComponent } from './components/comments/comments-container/comments-container.component';
+import { GalleryTagFormComponent } from './components/galleries/gallery-tag-form/gallery-tag-form.component';
+import { GalleryPhotoFormComponent } from './components/galleries/gallery-photo-form/gallery-photo-form.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { CommentsContainerComponent } from './components/comments/comments-conta
     DashboardComponent,
     GalleryComponent,
     CommentFormComponent,
-    CommentsContainerComponent
+    CommentsContainerComponent,
+    GalleryTagFormComponent,
+    GalleryPhotoFormComponent
   ],
   imports: [
     BrowserModule,

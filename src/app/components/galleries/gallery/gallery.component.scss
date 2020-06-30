@@ -27,14 +27,21 @@ p {
 
 .tags {
   display: flex;
-  flex-direction: row;
   align-items: center;
   max-width: 600px;
   flex-wrap: wrap;
 }
 
+.tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #acacac;
+  padding: 5px;
+  margin-right: 6px;
+}
+
 span {
-  margin-top: 15px;
   margin-right: 15px;
 }
 
@@ -64,6 +71,7 @@ span {
   max-height: 300px;
   margin-right: 20px;
   margin-bottom: 10px;
+  position: relative;
 }
 
 .other-photos img {
@@ -74,6 +82,28 @@ span {
 }
 
 .comment-section {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
   min-width: 250px;
   height: 150px;
+}
+
+.tags-container {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+}
+
+
+.add-photo-button {
+  margin: 10px 0;
+}
+
+.delete-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 20px;
+  padding: 5px;
 }

@@ -1,0 +1,19 @@
+<div class="">
+  <form #tagForm="ngForm">
+    <div class="tag-form-container">
+      <input
+        type="text"
+        class="input-control"
+        name="galleryTag"
+        [(ngModel)]="tag"
+        placeholder="Add tag"
+        required>
+      <button class="button button-success tag-button"
+              type="button"
+              (click)="onSubmit()"
+              [disabled]="tagForm.invalid">
+        <i class="fa fa-plus"></i>
+      </button>
+    </div>
+  </form>
+</div>
