@@ -18,6 +18,23 @@ export class GalleryComponent implements OnInit {
   gallery: IGallery;
   comments: IComment[];
 
+  updateGallery() {
+    this.http.post(`http://project.usagi.pl/gallery/${this.gallery.galleryId}`,
+      this.gallery, this.httpOptions).toPromise().then((response: IGallery) => {
+      this.gallery = response;
+    });
+  }
+
+  removeTag(tag) {
+    const tagUpper = tag.toUpperCase();
+    const index = this.gallery.tags.findIndex(tag => {
+      return tag === tagUpper;
+    });
+
+    this.gallery.tags.splice(index, 1);
+    this.updateGallery();
+  }
+
   addTag(tag: string) {
     const tagUpper = tag.toUpperCase();
     const index = this.gallery.tags.findIndex(tag => {
@@ -25,10 +42,7 @@ export class GalleryComponent implements OnInit {
     });
     if (index === -1) {
       this.gallery.tags.push(tagUpper);
-      this.http.post(`http://project.usagi.pl/gallery/${this.gallery.galleryId}`,
-        this.gallery, this.httpOptions).toPromise().then((response: IGallery) => {
-        this.gallery = response;
-      });
+      this.updateGallery();
     }
   }
 
