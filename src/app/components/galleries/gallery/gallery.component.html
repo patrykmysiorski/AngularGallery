@@ -16,6 +16,7 @@
             (addTag)="addTag($event)"
           ></app-gallery-tag-form>
         </div>
+        <button class="btn btn-primary edit-gallery-button" (click)="openEditGallery()">edit gallery</button>
       </div>
     </div>
     <div class="main-photo">
@@ -42,5 +43,10 @@
       (closeForm)="closePhotoForm()"
       *ngIf="showPhotoForm"
     ></app-gallery-photo-form>
+    <app-gallery-form *ngIf="showEditGalleryForm"
+                      [gallery]="galleryCopy" (savedGallery)="onGallerySave($event)"
+                      (closeForm)="onGalleryEdiClose()"
+    >
+    </app-gallery-form>
   </div>
 </div>

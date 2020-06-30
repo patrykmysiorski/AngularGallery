@@ -17,19 +17,41 @@ export class GalleryComponent implements OnInit {
   private galleryId: string;
   gallery: IGallery;
   comments: IComment[];
-  showPhotoForm: boolean;
+  showPhotoForm: boolean = false;
+  showEditGalleryForm: boolean = false;
   showCommentForm: boolean = true;
+  galleryCopy: IGallery;
 
   openPhotoForm() {
     this.showPhotoForm = true;
     this.showCommentForm = false;
+    this.showEditGalleryForm = false;
   }
 
   closePhotoForm() {
     this.showPhotoForm = false;
     this.showCommentForm = true;
+    this.showEditGalleryForm = false;
   }
 
+  openEditGallery() {
+    this.showPhotoForm = false;
+    this.showCommentForm = false;
+    this.showEditGalleryForm = true;
+  }
+
+  onGalleryEdiClose() {
+    this.showPhotoForm = false;
+    this.showCommentForm = true;
+    this.showEditGalleryForm = false;
+  }
+
+  onGallerySave(gallery) {
+    this.gallery = {...gallery};
+    this.http.post(`http://project.usagi.pl/gallery/${gallery.galleryId}`,
+      this.gallery, this.httpOptions).toPromise().then((response: IGallery) => {
+    });
+  }
 
   updateGallery() {
     this.http.post(`http://project.usagi.pl/gallery/${this.gallery.galleryId}`,
@@ -103,11 +125,16 @@ export class GalleryComponent implements OnInit {
   constructor(private route: ActivatedRoute, private http: HttpClient) {
   }
 
+  createGalleryCopy() {
+    this.galleryCopy = {...this.gallery};
+  }
+
   ngOnInit(): void {
     this.galleryId = this.route.snapshot.paramMap.get('galleryId');
     const url = 'http://project.usagi.pl/gallery/' + this.galleryId;
     this.http.get(url, this.httpOptions).toPromise().then((response: IGallery) => {
       this.gallery = this.convertTagsToUpperCase(response);
+      this.createGalleryCopy();
     });
     const urlForComments = 'http://project.usagi.pl/comment/byGallery/' + this.galleryId;
     this.http.get(urlForComments, this.httpOptions).toPromise().then((response: IComment[]) => {
