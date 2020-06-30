@@ -7,10 +7,10 @@
       <div class="tags-container">
         <div class="tags">
           <span *ngFor="let tag of gallery.tags">{{tag}}</span>
+          <app-gallery-tag-form
+            (addTag)="addTag($event)"
+          ></app-gallery-tag-form>
         </div>
-        <app-gallery-tag-form
-          (addTag)="addTag($event)"
-        ></app-gallery-tag-form>
       </div>
     </div>
     <div class="main-photo">
