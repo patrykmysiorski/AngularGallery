@@ -38,6 +38,7 @@ export class GalleriesComponent implements OnInit {
       this.galleries.push(response);
       this.numberOfPages = this.calculateNumberOfPages();
       this.addGalleryActive = !this.addGalleryActive;
+      this.travelYearsArray = this.createSortedYearsArray();
     }, (errResponse) => {
       console.log('error', errResponse);
     });
@@ -50,12 +51,16 @@ export class GalleriesComponent implements OnInit {
   }
 
   createSortedYearsArray = () => {
-    this.travelYearsSet = new Set();
-    Galleries.map(travel => this.travelYearsSet.add(moment(travel.dateCreated).format('yyyy')));
-    this.travelYearsSet.forEach(year => {
-      this.travelYearsArray.push(parseInt(year, 10));
+    let years = [];
+    let yearsSet;
+    yearsSet = new Set();
+    console.log(this.galleries);
+    this.galleries.map(travel => yearsSet.add(moment(travel.dateCreated).format('yyyy')));
+    yearsSet.forEach(year => {
+      years.push(parseInt(year, 10));
     });
-    this.travelYearsArray.sort((a, b) => a - b);
+    years = years.sort((a, b) => a - b);
+    return years;
   };
 
   constructor(private http: HttpClient) {
@@ -75,6 +80,7 @@ export class GalleriesComponent implements OnInit {
     this.http.get('http://project.usagi.pl/gallery', this.httpOptions).toPromise().then((response: IGallery[]) => {
       this.galleries = response;
       this.numberOfPages = this.calculateNumberOfPages();
+      this.travelYearsArray = this.createSortedYearsArray();
     });
     return this.galleries;
   }
@@ -95,6 +101,7 @@ export class GalleriesComponent implements OnInit {
         console.log('success', response);
         this.numberOfPages = this.calculateNumberOfPages();
         this.galleries = this.galleries.concat(response);
+        this.travelYearsArray = this.createSortedYearsArray();
       }, (errResponse) => {
         console.log('error', errResponse);
       });
@@ -108,6 +115,7 @@ export class GalleriesComponent implements OnInit {
         this.galleries = [];
         this.numberOfPages = this.calculateNumberOfPages();
         this.setCurrentPage();
+        this.travelYearsArray = this.createSortedYearsArray();
         console.log('success', response);
       }, (errResponse) => {
         console.log('error', errResponse);
@@ -121,7 +129,6 @@ export class GalleriesComponent implements OnInit {
     if (numberOfPages[0] == undefined) {
       numberOfPages[0] = 1;
     }
-    console.log(numberOfPages);
     return numberOfPages;
   }
 
@@ -131,6 +138,7 @@ export class GalleriesComponent implements OnInit {
       this.galleries = this.galleries.filter((gallery: IGallery) => {
         return gallery.galleryId !== galleryId;
       });
+      this.travelYearsArray = this.createSortedYearsArray();
       this.numberOfPages = this.calculateNumberOfPages();
       if (this.galleries.length % 3 === 0 && this.currentPage != 0) {
         this.setCurrentPage(this.currentPage - 1);
