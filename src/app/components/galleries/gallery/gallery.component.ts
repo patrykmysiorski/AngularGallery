@@ -17,12 +17,26 @@ export class GalleryComponent implements OnInit {
   private galleryId: string;
   gallery: IGallery;
   comments: IComment[];
+  showPhotoForm: boolean;
+
+  openPhotoForm() {
+    this.showPhotoForm = true;
+  }
+
+  closePhotoForm() {
+    this.showPhotoForm = false;
+  }
+
 
   updateGallery() {
     this.http.post(`http://project.usagi.pl/gallery/${this.gallery.galleryId}`,
       this.gallery, this.httpOptions).toPromise().then((response: IGallery) => {
       this.gallery = response;
     });
+  }
+
+  addPhoto(photo) {
+
   }
 
   removeTag(tag) {

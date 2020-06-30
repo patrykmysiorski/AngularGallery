@@ -1,1 +1,28 @@
-<p>gallery-photo-form works!</p>
+<div class="component-container">
+  <form #photoForm="ngForm" novalidate>
+    <h4>Add photo</h4>
+    <div class="input-group"
+         [ngClass]="{'input-error': (photoForm.controls['thumbUrl']?.touched ||
+photoForm.submitted) && photoForm.controls['thumbUrl']?.invalid}">
+      <label>Photo</label>
+      <input
+        type="text"
+        class="input-control"
+        name="thumbUrl"
+        [(ngModel)]="photo.imgUrl"
+        required>
+      <p class="error-text">This field is required</p>
+    </div>
+    <div class="button-group">
+      <button class="button button-success"
+              [disabled]="photoForm.invalid && photoForm.submitted"
+              (click)="onAddPhoto()">
+        Add to gallery
+      </button>
+      <button type="button" class="button button-default"
+              (click)="onCancel()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
