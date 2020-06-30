@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {IGallery} from '../../../../intefaces/IGallery';
 import {Galleries} from '../../../constants/galleries.constant';
 import * as moment from 'moment';
@@ -29,11 +29,12 @@ export class GalleriesComponent implements OnInit {
   addGalleryActive: boolean = false;
   gallery: IGallery;
 
+  @Output() clearValues = new EventEmitter();
+
   onGallerySave(gallery) {
     this.http.post('http://project.usagi.pl/gallery', gallery, this.httpOptions).toPromise().then((response: IGallery) => {
       console.log('success', response);
-      this.numberOfPages = Array(Math.ceil(this.galleries.length /
-        this.limit)).fill(1);
+      this.numberOfPages = this.calculateNumberOfPages();
       this.galleries.push(response);
       this.addGalleryActive = !this.addGalleryActive;
     }, (errResponse) => {
@@ -70,8 +71,7 @@ export class GalleriesComponent implements OnInit {
     this.galleries = [];
     this.http.get('http://project.usagi.pl/gallery', this.httpOptions).toPromise().then((response: IGallery[]) => {
       this.galleries = response;
-      this.numberOfPages = Array(Math.ceil(this.galleries.length /
-        this.limit)).fill(1);
+      this.numberOfPages = this.calculateNumberOfPages();
     });
     return this.galleries;
   }
@@ -90,8 +90,7 @@ export class GalleriesComponent implements OnInit {
 
       this.http.post('http://project.usagi.pl/gallery', gallery, this.httpOptions).toPromise().then((response: IGallery) => {
         console.log('success', response);
-        this.numberOfPages = Array(Math.ceil(this.galleries.length /
-          this.limit)).fill(1);
+        this.numberOfPages = this.calculateNumberOfPages();
         this.galleries = this.galleries.concat(response);
       }, (errResponse) => {
         console.log('error', errResponse);
