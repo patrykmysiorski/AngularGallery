@@ -92,7 +92,7 @@ export class GalleriesComponent implements OnInit {
         console.log('success', response);
         this.numberOfPages = Array(Math.ceil(this.galleries.length /
           this.limit)).fill(1);
-        this.galleries.push(response);
+        this.galleries = this.galleries.concat(response);
       }, (errResponse) => {
         console.log('error', errResponse);
       });
@@ -103,7 +103,7 @@ export class GalleriesComponent implements OnInit {
     this.galleries.forEach((gallery: IGallery) => {
       this.http.post('http://project.usagi.pl/gallery/delete/' +
         gallery.galleryId, {}, this.httpOptions).toPromise().then((response) => {
-        this.galleries.splice(0, 1);
+        this.galleries = [];
         this.numberOfPages = Array(Math.ceil(this.galleries.length /
           this.limit)).fill(1);
         console.log('success', response);
