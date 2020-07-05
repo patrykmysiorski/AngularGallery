@@ -33,7 +33,7 @@ export class GalleriesComponent implements OnInit {
 
   onGallerySave(gallery) {
     this.http.post('http://project.usagi.pl/gallery', gallery, this.httpOptions).toPromise().then((response: IGallery) => {
-      console.log('success', response);
+      console.log('success');
       this.setCurrentPage();
       this.galleries.push(response);
       this.numberOfPages = this.calculateNumberOfPages();
@@ -97,7 +97,7 @@ export class GalleriesComponent implements OnInit {
       delete (gallery.galleryId);
 
       this.http.post('http://project.usagi.pl/gallery', gallery, this.httpOptions).toPromise().then((response: IGallery) => {
-        console.log('success', response);
+        console.log('success');
         this.numberOfPages = this.calculateNumberOfPages();
         this.galleries = this.galleries.concat(response);
         this.travelYearsArray = this.createSortedYearsArray();
@@ -115,7 +115,7 @@ export class GalleriesComponent implements OnInit {
         this.numberOfPages = this.calculateNumberOfPages();
         this.setCurrentPage();
         this.travelYearsArray = this.createSortedYearsArray();
-        console.log('success', response);
+        console.log('success');
       }, (errResponse) => {
         console.log('error', errResponse);
       });
@@ -142,7 +142,7 @@ export class GalleriesComponent implements OnInit {
       if (this.galleries.length % 3 === 0 && this.currentPage != 0) {
         this.setCurrentPage(this.currentPage - 1);
       }
-      console.log('success', response);
+      console.log('success');
     }, (errResponse) => {
       console.log('error', errResponse);
     });

@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {IComment} from '../../../../intefaces/IComment';
 import {NgForm} from '@angular/forms';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
 import {httpOptions} from '../../../constants/httpUtils';
 
@@ -35,7 +35,6 @@ export class CommentFormComponent implements OnInit {
   onSubmit() {
     this.http.post(`http://project.usagi.pl/comment`, this.comment,
       this.httpOptions).toPromise().then((response: IComment) => {
-      console.log(response);
       this.addComment.emit(response);
     });
     this.commentForm.resetForm();
