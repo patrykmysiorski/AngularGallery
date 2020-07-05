@@ -1,15 +1,16 @@
-<div class="main-flex-container">
-  <div class="gallery-flex-container" *ngIf="gallery">
-    <div class="header">
-      <div class="header-block">
+<div class="main-container flex-row-container flex-wrap flex-justify-space-between">
+  <div class="gallery flex-col-container" *ngIf="gallery">
+    <div class="flex-col-container">
+      <div class="header-block flex-row-container flex-justify-space-between flex-align-items-center">
         <button class="btn btn-info" (click)="backToGalleries()">back to galleries</button>
         <h1>{{gallery.title}}</h1>
       </div>
       <p><small>{{gallery.dateCreated | date: 'longDate'}}</small></p>
       <h3>{{gallery.description}}</h3>
-      <div class="tags-container">
-        <div class="tags">
-          <div class="tag" *ngFor="let tag of gallery.tags">
+      <div class="tags-container flex-row-container flex-align-items-center flex-justify-space-between">
+        <div class="tags flex-row-container flex-align-items-center flex-wrap">
+          <div class="tag flex-row-container flex-align-items-center flex-justify-center"
+               *ngFor="let tag of gallery.tags">
             <span>
               {{tag}}
             </span>
@@ -19,13 +20,13 @@
             (addTag)="addTag($event)"
           ></app-gallery-tag-form>
         </div>
-        <button class="btn btn-primary edit-gallery-button" (click)="openEditGallery()">edit gallery</button>
+        <button class="btn btn-primary" (click)="openEditGallery()">edit gallery</button>
       </div>
     </div>
-    <div class="main-photo">
+    <div class="main-photo flex-row-container flex-justify-space-between">
       <img src="{{gallery.thumbUrl}}" alt="image not found">
     </div>
-    <div class="other-photos">
+    <div class="other-photos flex-row-container flex-wrap flex-justify-center">
       <div class="other-photo" *ngFor="let image of gallery.photos">
         <img alt="image not found" src="{{image.thumbUrl}}">
         <i class="fa fa-remove delete-button" (click)="deletePhoto(image.photoId)"></i>
@@ -37,7 +38,7 @@
                             (deleteComment)="deleteComment($event)">
     </app-comments-container>
   </div>
-  <div class="comment-section" *ngIf="gallery">
+  <div class="comment-section flex-col-container flex-align-items-start" *ngIf="gallery">
     <app-comment-form [galleryId]="gallery.galleryId" (addComment)="updateComments($event)"
                       *ngIf="showCommentForm"></app-comment-form>
 

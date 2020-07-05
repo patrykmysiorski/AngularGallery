@@ -1,7 +1,7 @@
-<div class="form-container">
+<div class="form-container flex-col-container flex-align-items-center">
   <h3>Comments</h3>
   <form #commentForm="ngForm" novalidate>
-    <div class="row">
+    <div class="flex-row-container">
       <div class="input-group" [ngClass]="{'input-error': (commentForm.controls['firstName']?.touched ||
 commentForm.submitted) && commentForm.controls['firstName']?.invalid}">
         <label>First name</label>
@@ -25,7 +25,7 @@ commentForm.submitted) && commentForm.controls['lastName']?.invalid}">
         <p class="error-text">This field is required</p>
       </div>
     </div>
-    <div class="row">
+    <div class="flex-row-container">
       <div class="input-group" [ngClass]="{'input-error': (commentForm.controls['email']?.touched ||
 commentForm.submitted) && commentForm.controls['email']?.invalid}">
         <label>Email</label>
@@ -41,7 +41,7 @@ commentForm.submitted) && commentForm.controls['email']?.invalid}">
            *ngIf="commentForm.controls['email']?.errors?.pattern">Input correct email</p>
       </div>
     </div>
-    <div class="row">
+    <div class="flex-row-container">
       <div class="input-group" [ngClass]="{'input-error': (commentForm.controls['message']?.touched ||
 commentForm.submitted) && commentForm.controls['message']?.invalid}">
         <label>Message</label>

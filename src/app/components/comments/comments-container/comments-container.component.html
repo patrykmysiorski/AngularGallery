@@ -1,10 +1,10 @@
-<div class="comments-container" *ngFor="let comment of comments">
-  <div class="comment">
+<div class="comments-container flex-row-container flex-justify-space-between" *ngFor="let comment of comments">
+  <div class="flex-col-container">
     <h5>Author: {{comment.firstName}}</h5>
     <p><small>{{comment.dateCreated}}</small></p>
     <p class="comment-message">{{comment.message}}</p>
   </div>
-  <div class="delete-button">
+  <div class="flex-row-container flex-align-items-center">
     <button class="btn btn-danger" (click)="onDelete(comment.commentId)">delete</button>
   </div>
 </div>

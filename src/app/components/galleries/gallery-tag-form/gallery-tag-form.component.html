@@ -1,6 +1,6 @@
 <div class="">
   <form #tagForm="ngForm">
-    <div class="tag-form-container">
+    <div class="tag-form-container flex-row-container">
       <input
         type="text"
         class="input-control"
@@ -8,7 +8,7 @@
         [(ngModel)]="tag"
         placeholder="Add tag"
         required>
-      <button class="button button-success tag-button"
+      <button class="button button-success tag-button flex-row-container flex-center-both"
               type="button"
               (click)="onSubmit()"
               [disabled]="tagForm.invalid">

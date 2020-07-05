@@ -1,16 +1,8 @@
 .comments-container {
-  display: flex;
   margin-top: 25px;
   border: 1px solid white;
   background-color: #acacac;
   padding: 15px;
-  justify-content: space-between;
-}
-
-.comment {
-  display: flex;
-  flex-direction: column;
-
 }
 
 small {
@@ -24,9 +16,4 @@ h5 {
 .comment-message {
   margin-top: 5px;
   font-size: 22px;
-}
-
-.delete-button {
-  display: flex;
-  align-items: center;
 }

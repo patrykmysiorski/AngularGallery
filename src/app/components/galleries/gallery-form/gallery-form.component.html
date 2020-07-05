@@ -1,7 +1,7 @@
-<div class="form-container">
+<div class="form-container flex-col-container flex-align-items-center">
   <h3>{{header}}</h3>
   <form #galleryEditForm="ngForm" novalidate>
-    <div class="row">
+    <div class="flex-row-container">
       <div class="input-group" [ngClass]="{'input-error': (galleryEditForm.controls['title']?.touched ||
 galleryEditForm.submitted) && galleryEditForm.controls['title']?.invalid}">
         <label>Gallery title</label>
@@ -14,7 +14,7 @@ galleryEditForm.submitted) && galleryEditForm.controls['title']?.invalid}">
         <p class="error-text">This field is required</p>
       </div>
     </div>
-    <div class="row">
+    <div class="flex-row-container">
       <div class="input-group" [ngClass]="{'input-error': (galleryEditForm.controls['photo']?.touched ||
 galleryEditForm.submitted) && galleryEditForm.controls['photo']?.invalid}">
         <label>Gallery main photo</label>
@@ -27,7 +27,7 @@ galleryEditForm.submitted) && galleryEditForm.controls['photo']?.invalid}">
         <p class="error-text">This field is required</p>
       </div>
     </div>
-    <div class="row">
+    <div class="flex-row-container">
       <div class="input-group" [ngClass]="{'input-error': (galleryEditForm.controls['description']?.touched ||
 galleryEditForm.submitted) && galleryEditForm.controls['description']?.invalid}">
         <label>Gallery description</label>
@@ -41,7 +41,7 @@ galleryEditForm.submitted) && galleryEditForm.controls['description']?.invalid}"
         <p class="error-text">This field is required</p>
       </div>
     </div>
-    <div class="button-group">
+    <div class="flex-row-container">
       <button class="button button-success"
               [disabled]="galleryEditForm.invalid && galleryEditForm.submitted"
               (click)="onSaveChanges()">
