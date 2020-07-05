@@ -54,7 +54,6 @@ export class GalleriesComponent implements OnInit {
     let years = [];
     let yearsSet;
     yearsSet = new Set();
-    console.log(this.galleries);
     this.galleries.map(travel => yearsSet.add(moment(travel.dateCreated).format('yyyy')));
     yearsSet.forEach(year => {
       years.push(parseInt(year, 10));
