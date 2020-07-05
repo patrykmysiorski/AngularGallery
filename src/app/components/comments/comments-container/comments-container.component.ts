@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {IComment} from '../../../../intefaces/IComments';
+import {IComment} from '../../../../intefaces/IComment';
 import {httpOptions} from '../../../constants/httpUtils';
 import {ActivatedRoute} from '@angular/router';
 import {HttpClient} from '@angular/common/http';

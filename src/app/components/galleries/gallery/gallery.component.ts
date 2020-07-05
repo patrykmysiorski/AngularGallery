@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {IGallery} from '../../../../intefaces/IGallery';
 import {HttpClient} from '@angular/common/http';
-import {IComment} from '../../../../intefaces/IComments';
+import {IComment} from '../../../../intefaces/IComment';
 import {httpOptions} from '../../../constants/httpUtils';
 import {Location} from '@angular/common';
 
