@@ -22,9 +22,9 @@
   <h6>{{description}}</h6>
 </header>
 <section>
-  <div class="galleries-container flex-row-container flex-wrap flex-justify-center">
+  <div class="galleries-container flex-row-container flex-justify-center">
     <!--TODO trackBY directive doesn`t work-->
-    <div class="flex-row-container" *ngIf="!addGalleryActive">
+    <div class="flex-row-container flex-wrap" *ngIf="!addGalleryActive">
       <app-gallery-item
         class="gallery flex-col-container flex-justify-center flex-align-items-center"
         *ngFor="let gallery of galleries | searchGalleries : searchValue | searchByYear : yearSearch | slice:start:end;"
