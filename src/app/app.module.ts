@@ -19,6 +19,7 @@ import {GalleryTagFormComponent} from './components/galleries/gallery-tag-form/g
 import {GalleryPhotoFormComponent} from './components/galleries/gallery-photo-form/gallery-photo-form.component';
 import {GalleryFormComponent} from './components/galleries/gallery-form/gallery-form.component';
 import {NewsFormComponent} from './components/dashboard/news-form/news-form.component';
+import { NewsContainerComponent } from './components/dashboard/news-container/news-container.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {NewsFormComponent} from './components/dashboard/news-form/news-form.comp
     GalleryTagFormComponent,
     GalleryPhotoFormComponent,
     GalleryFormComponent,
-    NewsFormComponent
+    NewsFormComponent,
+    NewsContainerComponent
   ],
   imports: [
     BrowserModule,
