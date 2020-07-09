@@ -18,13 +18,14 @@ export class SingleNewsComponent implements OnInit {
   httpOptions = httpOptions;
 
   onDeleteNews() {
-    const url = `http://project.usagi.pl/news/delete/${this.news.newsId}`
+    const url = `http://project.usagi.pl/news/delete/${this.news.newsId}`;
     this.http.post(url, {}, this.httpOptions).toPromise().then(() => {
       this.deleteNews.emit(this.news.newsId);
     });
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   ngOnInit(): void {
   }

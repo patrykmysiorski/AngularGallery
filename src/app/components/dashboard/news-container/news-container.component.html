@@ -6,11 +6,19 @@
     ></app-news-form>
   </div>
   <div class="flex-row-container">
-    <div class="single-news" *ngFor="let news of newsList">
+    <div class="single-news" *ngFor="let news of newsList | slice:start:end;">
       <app-single-news
         [news]="news"
         (deleteNews)="onDeleteNews($event)"
       ></app-single-news>
     </div>
   </div>
+  <app-paging
+    [itemsList]="newsList"
+    [currentPage]="currentPage"
+    [numberOfPages]="numberOfPages"
+    (moveBack)="moveBack()"
+    (moveForward)="moveForward()"
+    (setCurrentPage)="setCurrentPage($event)"
+  ></app-paging>
 </div>

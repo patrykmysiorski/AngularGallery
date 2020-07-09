@@ -1,14 +1,14 @@
-<div class="paging-container flex-row-container flex-justify-space-between" *ngIf="itemsList.length">
-  <div>
-        <span [ngClass]="{'disabled-link':currentPage === 0}">
-                <a (click)="onMoveBack()">&lt;</a>
-              </span>
+<div class="paging-container flex-row-container flex-justify-space-between" *ngIf="itemsList">
+  <div *ngIf="numberOfPages">
+    <span [ngClass]=" {'disabled-link':currentPage === 0}">
+      <a (click)="onMoveBack()">&lt;</a>
+    </span>
     <span *ngFor="let item of numberOfPages; let i = index" [ngClass]="{'active-page':currentPage === i}">
-                <a (click)="onSetCurrentPage(i)">{{i + 1}}</a>
-              </span>
+      <a (click)="onSetCurrentPage(i)">{{i + 1}}</a>
+    </span>
     <span [ngClass]="{'disabled-link':currentPage === numberOfPages.length - 1}">
-                <a (click)="onMoveForward()">&gt;</a>
-              </span>
+      <a (click)="onMoveForward()">&gt;</a>
+    </span>
   </div>
-  <p>Site {{currentPage + 1}} of {{numberOfPages.length}}</p>
+  <p *ngIf="numberOfPages">Site {{currentPage + 1}} of {{numberOfPages.length}}</p>
 </div>

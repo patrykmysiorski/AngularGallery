@@ -21,6 +21,7 @@ export class NewsContainerComponent implements OnInit {
   fetchGalleries() {
     this.http.get('http://project.usagi.pl/news', this.httpOptions).toPromise().then((response: INews[]) => {
       this.newsList = response.filter(news => news.newsId != '');
+      this.numberOfPages = this.calculateNumberOfPages();
       // this.numberOfPages = this.calculateNumberOfPages();
       // this.travelYearsArray = this.createSortedYearsArray();
     });
@@ -33,6 +34,10 @@ export class NewsContainerComponent implements OnInit {
 
   onDeleteNews(newsId) {
     this.newsList = this.newsList.filter(news => news.newsId !== newsId);
+    this.numberOfPages = this.calculateNumberOfPages();
+    if (this.newsList.length % 3 === 0 && this.currentPage != 0) {
+      this.setCurrentPage(this.currentPage - 1);
+    }
   }
 
   constructor(private http: HttpClient) {
@@ -69,9 +74,8 @@ export class NewsContainerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.numberOfPages = this.calculateNumberOfPages();
+    this.fetchGalleries();
     this.currentPage = parseInt(localStorage.getItem('galleryPage')) || 0;
     this.setCurrentPage(this.currentPage);
   }
-
 }
