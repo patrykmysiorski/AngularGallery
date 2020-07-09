@@ -21,6 +21,10 @@ export class NewsPageComponent implements OnInit {
   constructor(private route: ActivatedRoute, private http: HttpClient, private _location: Location) {
   }
 
+  backToDashboard() {
+    this._location.back();
+  }
+
   ngOnInit(): void {
     this.newsId = this.route.snapshot.paramMap.get('newsId');
     const url = `http://project.usagi.pl/news/${this.newsId}`;

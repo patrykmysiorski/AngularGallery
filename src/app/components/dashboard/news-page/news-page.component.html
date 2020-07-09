@@ -1,1 +1,20 @@
-<p>news-page works!</p>
+<div class="flex-col-container news-page flex-justify-space-between">
+  <div>
+    <img class="photo-container" src="{{newsCopy.photo.thumbUrl}}" alt="image not found">
+  </div>
+  <div>
+    <h2>{{newsCopy.title}}</h2>
+  </div>
+  <div>
+    <p class="m-t-8"><small>{{newsCopy.dateCreated | date: 'longDate'}}</small></p>
+  </div>
+  <div>
+    <h4>{{newsCopy.shortContent}}</h4>
+  </div>
+  <div>
+    <p>{{newsCopy.fullContent}}</p>
+  </div>
+  <div>
+    <button class="btn btn-primary" (click)="backToDashboard()">back to dashboard</button>
+  </div>
+</div>
