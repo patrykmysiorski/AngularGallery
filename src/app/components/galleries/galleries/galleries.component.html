@@ -42,20 +42,14 @@
       </app-gallery-form>
     </div>
   </div>
-  <div class="paging-container flex-row-container flex-justify-space-between" *ngIf="galleries.length">
-    <div>
-        <span [ngClass]="{'disabled-link':currentPage === 0}">
-                <a (click)="moveBack()">&lt;</a>
-              </span>
-      <span *ngFor="let item of numberOfPages; let i = index" [ngClass]="{'active-page':currentPage === i}">
-                <a (click)="setCurrentPage(i)">{{i + 1}}</a>
-              </span>
-      <span [ngClass]="{'disabled-link':currentPage === numberOfPages.length - 1}">
-                <a (click)="moveForward()">&gt;</a>
-              </span>
-    </div>
-    <p>Site {{currentPage + 1}} of {{numberOfPages.length}}</p>
-  </div>
+  <app-paging
+    [itemsList]="galleries"
+    [currentPage]="currentPage"
+    [numberOfPages]="numberOfPages"
+    (moveBack)="moveBack()"
+    (moveForward)="moveForward()"
+    (setCurrentPage)="setCurrentPage($event)"
+  ></app-paging>
   <div class="buttons-container flex-row-container flex-wrap flex-justify-center flex-align-items-center">
     <button class="button btn btn-primary" (click)="exportGalleries()">Export galleries</button>
     <button class="button btn btn-danger" (click)="removeGalleries()">Delete galleries</button>
