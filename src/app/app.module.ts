@@ -20,6 +20,7 @@ import {GalleryPhotoFormComponent} from './components/galleries/gallery-photo-fo
 import {GalleryFormComponent} from './components/galleries/gallery-form/gallery-form.component';
 import {NewsFormComponent} from './components/dashboard/news-form/news-form.component';
 import { NewsContainerComponent } from './components/dashboard/news-container/news-container.component';
+import { SingleNewsComponent } from './components/dashboard/single-news/single-news.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { NewsContainerComponent } from './components/dashboard/news-container/ne
     GalleryPhotoFormComponent,
     GalleryFormComponent,
     NewsFormComponent,
-    NewsContainerComponent
+    NewsContainerComponent,
+    SingleNewsComponent
   ],
   imports: [
     BrowserModule,
