@@ -1,8 +1,8 @@
 <div class="flex-col-container flex-justify-space-between max-height-70-vh">
-  <button class="btn btn-primary" (click)="onShowFormClick()">add news</button>
+  <button class="btn btn-primary" (click)="onShowFormClick()" *ngIf="!showForm">add news</button>
   <div class="flex-col-container flex-align-items-center" *ngIf="showForm">
     <app-news-form
-        (addNews)="addNews()"
+      (addNews)="addNews()"
     ></app-news-form>
   </div>
   <div class="flex-row-container">
