@@ -12,6 +12,11 @@ export class NewsContainerComponent implements OnInit {
   newsList: INews[];
   httpOptions = httpOptions;
   showForm: boolean = false;
+  limit: number;
+  currentPage: number;
+  start: number;
+  end: number;
+  numberOfPages: number;
 
   fetchGalleries() {
     this.http.get('http://project.usagi.pl/news', this.httpOptions).toPromise().then((response: INews[]) => {
@@ -38,7 +43,35 @@ export class NewsContainerComponent implements OnInit {
     this.showForm = !this.showForm;
   }
 
+  setCurrentPage(page = 0) {
+    this.limit = 3;
+    this.currentPage = page;
+    this.start = this.currentPage * this.limit;
+    this.end = this.start + 3;
+    localStorage.setItem('newsPage', this.currentPage.toString());
+  }
+
+  moveBack() {
+    this.setCurrentPage(this.currentPage - 1);
+  }
+
+  moveForward() {
+    this.setCurrentPage(this.currentPage + 1);
+  }
+
+  calculateNumberOfPages(): any {
+    let numberOfPages = Array(Math.ceil(this.newsList.length /
+      this.limit)).fill(1);
+    if (numberOfPages[0] == undefined) {
+      numberOfPages[0] = 1;
+    }
+    return numberOfPages;
+  }
+
   ngOnInit(): void {
+    this.numberOfPages = this.calculateNumberOfPages();
+    this.currentPage = parseInt(localStorage.getItem('galleryPage')) || 0;
+    this.setCurrentPage(this.currentPage);
   }
 
 }
