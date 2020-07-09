@@ -145,6 +145,7 @@ export class GalleryComponent implements OnInit {
     this.http.get(url, this.httpOptions).toPromise().then((response: IGallery) => {
       this.gallery = this.convertTagsToUpperCase(response);
       this.createGalleryCopy();
+      this.gallery.photos.splice(-1, 1);
     });
     const urlForComments = 'http://project.usagi.pl/comment/byGallery/' + this.galleryId;
     this.http.get(urlForComments, this.httpOptions).toPromise().then((response: IComment[]) => {

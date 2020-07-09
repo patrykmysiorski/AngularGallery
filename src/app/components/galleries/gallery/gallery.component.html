@@ -1,48 +1,32 @@
-<div class="main-container flex-row-container flex-wrap flex-justify-space-between">
-  <div class="gallery flex-col-container" *ngIf="gallery">
-    <div class="flex-col-container">
-      <div class="header-block flex-row-container flex-justify-space-between flex-align-items-center">
-        <button class="btn btn-info" (click)="backToGalleries()">back to galleries</button>
-        <h1>{{gallery.title}}</h1>
-      </div>
-      <p><small>{{gallery.dateCreated | date: 'longDate'}}</small></p>
-      <h3>{{gallery.description}}</h3>
-      <app-tags-container
-        [gallery]="gallery"
-        (removeTag)="removeTag($event)"
-        (addTag)="addTag($event)"
-      >
-      </app-tags-container>
-    </div>
+<div class="gallery-container flex-col-container">
+  <!--<div class="gallery-container flex-col-container flex-justify-space-between">-->
+  <!--  HEADER SECTION-->
+  <div class="header flex-row-container">
+    <button class="btn btn-primary back-button" (click)="backToGalleries()">back to galleries</button>
+    <h2>{{gallery.title}}, {{gallery.dateCreated | date: 'longDate'}}</h2>
+  </div>
+  <h3>{{gallery.description}}</h3>
+  <!--  TAGS-->
+  <app-tags-container
+    [gallery]="gallery"
+    (removeTag)="removeTag($event)"
+    (addTag)="addTag($event)"
+  >
+  </app-tags-container>
+  <!--  PHOTOS-->
+  <div class="photo-section-container flex-row-container flex-justify-space-between">
+    <!--    MAIN PHOTO-->
     <div class="main-photo flex-row-container flex-justify-space-between">
       <img src="{{gallery.thumbUrl}}" alt="image not found">
     </div>
-    <div class="other-photos flex-row-container flex-wrap flex-justify-center">
-      <div class="other-photo" *ngFor="let image of gallery.photos">
-        <img alt="image not found" src="{{image.thumbUrl}}">
-        <i class="fa fa-remove delete-button" (click)="deletePhoto(image.photoId)"></i>
+    <div class="flex-col-container flex-align-end">
+      <div class="other-photos-container flex-row-container flex-wrap">
+        <div class="other-photo" *ngFor="let photo of gallery.photos">
+          <img src="{{photo.thumbUrl}}" width="280">
+          <i class="fa fa-remove delete-button" (click)="deletePhoto(photo.photoId)"></i>
+        </div>
       </div>
-      <button class="button button-success add-photo-button" (click)="openPhotoForm()">Add Photo
-      </button>
     </div>
-    <app-comments-container *ngIf="gallery" [comments]="comments"
-                            (deleteComment)="deleteComment($event)">
-    </app-comments-container>
   </div>
-  <div class="comment-section flex-col-container flex-align-items-start" *ngIf="gallery">
-    <app-comment-form [galleryId]="gallery.galleryId" (addComment)="updateComments($event)"
-                      *ngIf="showCommentForm"></app-comment-form>
 
-    <app-gallery-photo-form
-      (addPhoto)="addPhoto($event)"
-      (closeForm)="closePhotoForm()"
-      *ngIf="showPhotoForm"
-    ></app-gallery-photo-form>
-    <app-gallery-form *ngIf="showEditGalleryForm"
-                      [gallery]="galleryCopy" (saveGallery)="onGallerySave($event)"
-                      (closeForm)="onGalleryEdiClose()"
-                      [header]="'Edit gallery'"
-    >
-    </app-gallery-form>
-  </div>
 </div>
