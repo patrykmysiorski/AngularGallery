@@ -23,6 +23,7 @@ import { NewsContainerComponent } from './components/dashboard/news-container/ne
 import { SingleNewsComponent } from './components/dashboard/single-news/single-news.component';
 import { NewsPageComponent } from './components/dashboard/news-page/news-page.component';
 import { PagingComponent } from './components/paging/paging.component';
+import { TagsContainerComponent } from './components/tags/tags-container/tags-container.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { PagingComponent } from './components/paging/paging.component';
     NewsContainerComponent,
     SingleNewsComponent,
     NewsPageComponent,
-    PagingComponent
+    PagingComponent,
+    TagsContainerComponent
   ],
   imports: [
     BrowserModule,

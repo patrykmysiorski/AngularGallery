@@ -1,0 +1,14 @@
+<div class="tags-container flex-row-container flex-align-items-center flex-justify-space-between">
+  <div class="tags flex-row-container flex-align-items-center flex-wrap">
+    <div class="tag flex-row-container flex-align-items-center flex-justify-center"
+         *ngFor="let tag of gallery.tags">
+            <span>
+              {{tag}}
+            </span>
+      <i class="fa fa-remove" (click)="onRemoveTag(tag)"></i>
+    </div>
+    <app-gallery-tag-form
+      (addTag)="onAddTag($event)"
+    ></app-gallery-tag-form>
+  </div>
+</div>
