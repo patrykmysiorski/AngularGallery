@@ -1,7 +1,9 @@
 <div class="flex-row-container  flex-wrap">
   <div class="single-news" *ngFor="let news of newsList">
-    <app-single-news
-      [news]="news"
-    ></app-single-news>
+    <a routerLink="news/{{news.newsId}}" class="thumb-container">
+      <app-single-news
+        [news]="news"
+      ></app-single-news>
+    </a>
   </div>
 </div>

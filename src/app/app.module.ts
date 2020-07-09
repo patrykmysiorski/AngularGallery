@@ -21,6 +21,7 @@ import {GalleryFormComponent} from './components/galleries/gallery-form/gallery-
 import {NewsFormComponent} from './components/dashboard/news-form/news-form.component';
 import { NewsContainerComponent } from './components/dashboard/news-container/news-container.component';
 import { SingleNewsComponent } from './components/dashboard/single-news/single-news.component';
+import { NewsPageComponent } from './components/dashboard/news-page/news-page.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { SingleNewsComponent } from './components/dashboard/single-news/single-n
     GalleryFormComponent,
     NewsFormComponent,
     NewsContainerComponent,
-    SingleNewsComponent
+    SingleNewsComponent,
+    NewsPageComponent
   ],
   imports: [
     BrowserModule,
