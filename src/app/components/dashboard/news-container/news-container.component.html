@@ -1,7 +1,9 @@
 <div class="flex-col-container flex-justify-space-between max-height-70-vh">
   <button class="btn btn-primary" (click)="onShowFormClick()">add news</button>
   <div class="flex-col-container flex-align-items-center" *ngIf="showForm">
-    <app-news-form></app-news-form>
+    <app-news-form
+        (addNews)="addNews()"
+    ></app-news-form>
   </div>
   <div class="flex-row-container">
     <div class="single-news" *ngFor="let news of newsList">

@@ -21,6 +21,11 @@ export class NewsContainerComponent implements OnInit {
     });
   }
 
+  addNews() {
+    this.fetchGalleries();
+    this.showForm = !this.showForm;
+  }
+
   onDeleteNews(newsId) {
     this.newsList = this.newsList.filter(news => news.newsId !== newsId);
   }
