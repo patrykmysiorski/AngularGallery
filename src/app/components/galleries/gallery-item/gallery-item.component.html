@@ -1,7 +1,9 @@
-<a routerLink="/galleries/{{gallery.galleryId}}" class="thumb-container">
-  <img src="{{gallery.thumbUrl}}" alt="image not found">
-</a>
-<p>{{gallery.title}}</p>
-<p><small>{{gallery.dateCreated | date: 'longDate'}}</small></p>
-<p>{{gallery.description}}</p>
-<button class="m-t-20 btn btn-danger" (click)="onDelete(gallery.galleryId)">delete gallery</button>
+<div class="flex-col-container single-gallery">
+  <a routerLink="/galleries/{{gallery.galleryId}}" class="thumb-container">
+    <img src="{{gallery.thumbUrl}}" alt="image not found">
+    <p class="m-t-8">{{gallery.title}}</p>
+    <p class="m-t-8"><small>{{gallery.dateCreated | date: 'longDate'}}</small></p>
+    <p class="m-t-8 height-100">{{gallery.description}}</p>
+  </a>
+  <button class="m-t-20 btn btn-danger" (click)="onDelete(gallery.galleryId)">delete gallery</button>
+</div>

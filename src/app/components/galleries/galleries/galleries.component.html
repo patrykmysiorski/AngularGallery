@@ -1,33 +1,32 @@
-<header>
-  <div class="flex-row-container flex-align-items-center flex-wrap">
-    <div class="left-section flex-row-container flex-wrap flex-align-items-center">
-      <h1>{{title}}</h1>
-      <app-gallery-search
-        *ngIf="galleries.length"
-        (searchValue)="setSearchValue($event)"
-      >
-      </app-gallery-search>
-      <app-gallery-search-by-year
-        *ngIf="galleries.length"
-        [yearsArray]="travelYearsArray"
-        (searchYear)="setSearchYear($event)"
-      >
-      </app-gallery-search-by-year>
+<div class="flex-col-container flex-justify-space-between h-70-vh">
+  <header>
+    <div class="flex-row-container flex-align-items-center flex-wrap">
+      <div class="left-section flex-row-container flex-wrap flex-align-items-center">
+        <h1>{{title}}</h1>
+        <app-gallery-search
+          *ngIf="galleries.length"
+          (searchValue)="setSearchValue($event)"
+        >
+        </app-gallery-search>
+        <app-gallery-search-by-year
+          *ngIf="galleries.length"
+          [yearsArray]="travelYearsArray"
+          (searchYear)="setSearchYear($event)"
+        >
+        </app-gallery-search-by-year>
+      </div>
+      <div>
+        <button class="btn btn-primary" (click)="setAddGalleryActive()">Add gallery</button>
+      </div>
     </div>
-    <div>
-      <button class="btn btn-primary" (click)="setAddGalleryActive()">Add gallery</button>
-    </div>
-  </div>
-  <hr>
-  <h6>{{description}}</h6>
-</header>
-<section>
-  <div class="galleries-container flex-row-container flex-justify-center">
-    <!--TODO trackBY directive doesn`t work-->
-    <div class="flex-row-container flex-wrap" *ngIf="!addGalleryActive">
+    <hr>
+    <h6>{{description}}</h6>
+  </header>
+  <div class="single-gallery-container flex-row-container flex-wrap flex-justify-space-between"
+       *ngIf="!addGalleryActive">
+    <div class="single-gallery"
+         *ngFor="let gallery of galleries | searchGalleries : searchValue | searchByYear : yearSearch | slice:start:end;">
       <app-gallery-item
-        class="gallery flex-col-container flex-justify-center flex-align-items-center"
-        *ngFor="let gallery of galleries | searchGalleries : searchValue | searchByYear : yearSearch | slice:start:end;"
         [gallery]="gallery"
         (deleteGallery)="removeGallery($event)"
       >
@@ -50,8 +49,8 @@
     (moveForward)="moveForward()"
     (setCurrentPage)="setCurrentPage($event)"
   ></app-paging>
-  <div class="buttons-container flex-row-container flex-wrap flex-justify-center flex-align-items-center">
-    <button class="button btn btn-primary" (click)="exportGalleries()">Export galleries</button>
-    <button class="button btn btn-danger" (click)="removeGalleries()">Delete galleries</button>
-  </div>
-</section>
+</div>
+<div class="buttons-container flex-row-container flex-wrap flex-justify-center flex-align-items-center">
+  <button class="button btn btn-primary" (click)="exportGalleries()">Export galleries</button>
+  <button class="button btn btn-danger" (click)="removeGalleries()">Delete galleries</button>
+</div>
