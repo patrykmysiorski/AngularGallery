@@ -45,9 +45,15 @@ newsForm.submitted) && newsForm.controls['fullContent']?.invalid}">
         name="photo"
         [(ngModel)]="news.photo.thumbUrl">
     </div>
-    <button class="btn btn-primary send-button"
-            (click)="onSubmit()"
-            [disabled]="newsForm.submitted || newsForm.invalid || newsForm.pristine">add news
-    </button>
+    <div class="flex-row-container">
+      <button class="btn btn-primary send-button"
+              (click)="onSubmit()"
+              [disabled]="newsForm.submitted || newsForm.invalid || newsForm.pristine">add news
+      </button>
+      <button type="button" class="button button-default"
+              (click)="onCancel()">
+        Cancel
+      </button>
+    </div>
   </form>
 </div>

@@ -3,9 +3,10 @@
   <div class="flex-col-container flex-align-items-center" *ngIf="showForm">
     <app-news-form
       (addNews)="addNews()"
+      (closeForm)="onShowFormClick()"
     ></app-news-form>
   </div>
-  <div class="flex-row-container single-news-container flex-justify-space-between flex-wrap">
+  <div class="flex-row-container single-news-container flex-justify-space-between flex-wrap" *ngIf="!showForm">
     <div class="single-news" *ngFor="let news of newsList | slice:start:end;">
       <app-single-news
         [news]="news"

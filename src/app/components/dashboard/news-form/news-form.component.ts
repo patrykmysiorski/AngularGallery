@@ -16,6 +16,9 @@ export class NewsFormComponent implements OnInit {
   @Output()
   addNews = new EventEmitter();
 
+  @Output()
+  closeForm = new EventEmitter();
+
   httpOptions = httpOptions;
 
   news: INews;
@@ -47,6 +50,12 @@ export class NewsFormComponent implements OnInit {
     this.http.get('http://project.usagi.pl/news', this.httpOptions).toPromise().then((response: INews[]) => {
       return response.length;
     });
+  }
+
+  onCancel() {
+    this.newsForm.resetForm();
+    this.closeForm.emit();
+
   }
 
   onSubmit() {
