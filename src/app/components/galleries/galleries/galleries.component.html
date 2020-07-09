@@ -19,7 +19,14 @@
     <hr>
     <h6>{{description}}</h6>
   </header>
-  <button class="btn btn-primary" (click)="setAddGalleryActive()">add gallery</button>
+  <button class="btn btn-primary" (click)="toggleFormActive()" *ngIf="!addGalleryActive">add gallery</button>
+  <div class="gallery-form" *ngIf="addGalleryActive">
+    <app-gallery-form
+      (closeForm)="toggleFormActive()"
+      (saveGallery)="onGallerySave($event)"
+    >
+    </app-gallery-form>
+  </div>
   <div class="single-gallery-container flex-row-container flex-wrap flex-justify-space-between"
        *ngIf="!addGalleryActive">
     <div class="single-gallery"
@@ -32,8 +39,8 @@
     </div>
     <div class="add-gallery-form" *ngIf="addGalleryActive">
       <app-gallery-form
-        (savedGallery)="onGallerySave($event)"
-        (closeForm)="onGalleryEdiClose()"
+        (saveGallery)="onGallerySave($event)"
+        (closeForm)="toggleFormActive()"
         [header]="'Add new gallery'"
       >
       </app-gallery-form>

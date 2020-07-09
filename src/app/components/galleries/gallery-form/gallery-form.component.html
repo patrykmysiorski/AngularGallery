@@ -1,49 +1,43 @@
-<div class="form-container flex-col-container flex-align-items-center">
+<div class="form-container flex-col-container">
   <h3>{{header}}</h3>
   <form #galleryEditForm="ngForm" novalidate>
-    <div class="flex-row-container">
-      <div class="input-group" [ngClass]="{'input-error': (galleryEditForm.controls['title']?.touched ||
+    <div class="input-group field" [ngClass]="{'input-error': (galleryEditForm.controls['title']?.touched ||
 galleryEditForm.submitted) && galleryEditForm.controls['title']?.invalid}">
-        <label>Gallery title</label>
-        <input
-          type="text"
-          class="input-control"
-          name="title"
-          [(ngModel)]="gallery.title"
-          required>
-        <p class="error-text">This field is required</p>
-      </div>
+      <label>Gallery title</label>
+      <input
+        type="text"
+        class="input-control"
+        name="title"
+        [(ngModel)]="gallery.title"
+        required>
+      <p class="error-text">This field is required</p>
     </div>
-    <div class="flex-row-container">
-      <div class="input-group" [ngClass]="{'input-error': (galleryEditForm.controls['photo']?.touched ||
-galleryEditForm.submitted) && galleryEditForm.controls['photo']?.invalid}">
-        <label>Gallery main photo</label>
-        <input
-          type="text"
-          class="input-control"
-          name="thumbUrl"
-          [(ngModel)]="gallery.thumbUrl"
-          required>
-        <p class="error-text">This field is required</p>
-      </div>
+    <div class="input-group field" [ngClass]="{'input-error': (galleryEditForm.controls['thumbUrl']?.touched ||
+galleryEditForm.submitted) && galleryEditForm.controls['thumbUrl']?.invalid}">
+      <label>Gallery main photo</label>
+      <input
+        type="text"
+        class="input-control"
+        name="thumbUrl"
+        [(ngModel)]="gallery.thumbUrl"
+      >
+      <p class="error-text">This field is required</p>
     </div>
-    <div class="flex-row-container">
-      <div class="input-group" [ngClass]="{'input-error': (galleryEditForm.controls['description']?.touched ||
+    <div class="input-group field" [ngClass]="{'input-error': (galleryEditForm.controls['description']?.touched ||
 galleryEditForm.submitted) && galleryEditForm.controls['description']?.invalid}">
-        <label>Gallery description</label>
-        <textarea
-          type="text"
-          class="input-control"
-          name="description"
-          [(ngModel)]="gallery.description"
-          required>
+      <label>Gallery description</label>
+      <textarea
+        type="text"
+        class="input-control"
+        name="description"
+        [(ngModel)]="gallery.description"
+        required>
         </textarea>
-        <p class="error-text">This field is required</p>
-      </div>
+      <p class="error-text">This field is required</p>
     </div>
     <div class="flex-row-container">
-      <button class="button button-success"
-              [disabled]="galleryEditForm.invalid && galleryEditForm.submitted"
+      <button class="btn btn-primary send-button"
+              [disabled]="galleryEditForm.submitted || galleryEditForm.invalid || galleryEditForm.pristine"
               (click)="onSaveChanges()">
         Save changes
       </button>
