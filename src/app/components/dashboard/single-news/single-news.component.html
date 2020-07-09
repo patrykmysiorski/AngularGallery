@@ -1,1 +1,6 @@
-<p>single-news works!</p>
+<div class="flex-col-container single-news m-t-8">
+  <img src="{{news.photo.thumbUrl}}" width="300" height="200">
+  <span class="m-t-8"><small>{{news.dateCreated | date: 'longDate'}}</small></span>
+  <h4 class="m-t-8">{{news.title}}</h4>
+  <p class="m-t-8">{{news.shortContent}}</p>
+</div>

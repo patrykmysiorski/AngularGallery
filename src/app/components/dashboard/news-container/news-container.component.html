@@ -1,5 +1,7 @@
-<div class="flex-row-container">
+<div class="flex-row-container  flex-wrap">
   <div class="single-news" *ngFor="let news of newsList">
-
+    <app-single-news
+      [news]="news"
+    ></app-single-news>
   </div>
 </div>
