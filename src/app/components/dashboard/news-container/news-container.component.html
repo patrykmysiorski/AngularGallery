@@ -1,8 +1,14 @@
-<div class="flex-row-container  flex-wrap">
-  <div class="single-news" *ngFor="let news of newsList">
-    <app-single-news
-      [news]="news"
-      (deleteNews)="onDeleteNews($event)"
-    ></app-single-news>
+<div class="flex-col-container flex-justify-space-between max-height-70-vh">
+  <button class="btn btn-primary" (click)="onShowFormClick()">add news</button>
+  <div class="flex-col-container flex-align-items-center" *ngIf="showForm">
+    <app-news-form></app-news-form>
+  </div>
+  <div class="flex-row-container">
+    <div class="single-news" *ngFor="let news of newsList">
+      <app-single-news
+        [news]="news"
+        (deleteNews)="onDeleteNews($event)"
+      ></app-single-news>
+    </div>
   </div>
 </div>

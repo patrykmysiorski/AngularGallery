@@ -11,6 +11,7 @@ import {INews} from '../../../../intefaces/INews';
 export class NewsContainerComponent implements OnInit {
   newsList: INews[];
   httpOptions = httpOptions;
+  showForm: boolean = false;
 
   fetchGalleries() {
     this.http.get('http://project.usagi.pl/news', this.httpOptions).toPromise().then((response: INews[]) => {
@@ -26,6 +27,10 @@ export class NewsContainerComponent implements OnInit {
 
   constructor(private http: HttpClient) {
     this.fetchGalleries();
+  }
+
+  onShowFormClick() {
+    this.showForm = !this.showForm;
   }
 
   ngOnInit(): void {

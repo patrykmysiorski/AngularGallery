@@ -6,17 +6,9 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
-  showForm: boolean = false;
-
   constructor() {
   }
 
   ngOnInit(): void {
   }
-
-  onShowFormClick() {
-    this.showForm = !this.showForm;
-  }
-
 }
