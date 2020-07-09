@@ -48,7 +48,7 @@
       *ngIf="showPhotoForm"
     ></app-gallery-photo-form>
     <app-gallery-form *ngIf="showEditGalleryForm"
-                      [gallery]="galleryCopy" (savedGallery)="onGallerySave($event)"
+                      [gallery]="galleryCopy" (saveGallery)="onGallerySave($event)"
                       (closeForm)="onGalleryEdiClose()"
                       [header]="'Edit gallery'"
     >

@@ -9,13 +9,13 @@ import {IGallery} from '../../../../intefaces/IGallery';
 })
 export class GalleryFormComponent implements OnInit {
   @ViewChild('galleryEditForm', {static: false})
-  editGallery: NgForm;
+  galleryEditForm: NgForm;
 
   @Input() gallery: IGallery;
 
   @Input() header: string;
 
-  @Output() savedGallery = new EventEmitter();
+  @Output() saveGallery = new EventEmitter();
 
   @Output() closeForm = new EventEmitter();
 
@@ -44,16 +44,16 @@ export class GalleryFormComponent implements OnInit {
   }
 
   private resetForm() {
-    this.editGallery.controls['title'].setErrors(null);
-    this.editGallery.controls['title'].setValue(this.gallery.title);
-    this.editGallery.controls['thumbUrl'].setErrors(null);
-    this.editGallery.controls['thumbUrl'].setValue(this.gallery.thumbUrl);
-    this.editGallery.controls['description'].setErrors(null);
-    this.editGallery.controls['description'].setValue(this.gallery.description);
+    this.galleryEditForm.controls['title'].setErrors(null);
+    this.galleryEditForm.controls['title'].setValue(this.gallery.title);
+    this.galleryEditForm.controls['thumbUrl'].setErrors(null);
+    this.galleryEditForm.controls['thumbUrl'].setValue(this.gallery.thumbUrl);
+    this.galleryEditForm.controls['description'].setErrors(null);
+    this.galleryEditForm.controls['description'].setValue(this.gallery.description);
   }
 
   onSaveChanges() {
-    this.savedGallery.emit(this.gallery);
+    this.saveGallery.emit(this.gallery);
   }
 
 }

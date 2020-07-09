@@ -1,33 +1,37 @@
-<header>
-  <div class="flex-row-container flex-align-items-center flex-wrap">
-    <div class="left-section flex-row-container flex-wrap flex-align-items-center">
-      <h1>{{title}}</h1>
-      <app-gallery-search
-        *ngIf="galleries.length"
-        (searchValue)="setSearchValue($event)"
-      >
-      </app-gallery-search>
-      <app-gallery-search-by-year
-        *ngIf="galleries.length"
-        [yearsArray]="travelYearsArray"
-        (searchYear)="setSearchYear($event)"
-      >
-      </app-gallery-search-by-year>
+<div class="flex-col-container flex-justify-space-between h-70-vh">
+  <header>
+    <div class="flex-row-container flex-align-items-center flex-wrap">
+      <div class="left-section flex-row-container flex-wrap flex-align-items-center">
+        <h1>{{title}}</h1>
+        <app-gallery-search
+          *ngIf="galleries.length"
+          (searchValue)="setSearchValue($event)"
+        >
+        </app-gallery-search>
+        <app-gallery-search-by-year
+          *ngIf="galleries.length"
+          [yearsArray]="travelYearsArray"
+          (searchYear)="setSearchYear($event)"
+        >
+        </app-gallery-search-by-year>
+      </div>
     </div>
-    <div>
-      <button class="btn btn-primary" (click)="setAddGalleryActive()">Add gallery</button>
-    </div>
+    <hr>
+    <h6>{{description}}</h6>
+  </header>
+  <button class="btn btn-primary" (click)="toggleFormActive()" *ngIf="!addGalleryActive">add gallery</button>
+  <div class="gallery-form" *ngIf="addGalleryActive">
+    <app-gallery-form
+      (closeForm)="toggleFormActive()"
+      (saveGallery)="onGallerySave($event)"
+    >
+    </app-gallery-form>
   </div>
-  <hr>
-  <h6>{{description}}</h6>
-</header>
-<section>
-  <div class="galleries-container flex-row-container flex-wrap flex-justify-center">
-    <!--TODO trackBY directive doesn`t work-->
-    <div class="flex-row-container" *ngIf="!addGalleryActive">
+  <div class="single-gallery-container flex-row-container flex-wrap flex-justify-space-between"
+       *ngIf="!addGalleryActive">
+    <div class="single-gallery"
+         *ngFor="let gallery of galleries | searchGalleries : searchValue | searchByYear : yearSearch | slice:start:end;">
       <app-gallery-item
-        class="gallery flex-col-container flex-justify-center flex-align-items-center"
-        *ngFor="let gallery of galleries | searchGalleries : searchValue | searchByYear : yearSearch | slice:start:end;"
         [gallery]="gallery"
         (deleteGallery)="removeGallery($event)"
       >
@@ -35,29 +39,23 @@
     </div>
     <div class="add-gallery-form" *ngIf="addGalleryActive">
       <app-gallery-form
-        (savedGallery)="onGallerySave($event)"
-        (closeForm)="onGalleryEdiClose()"
+        (saveGallery)="onGallerySave($event)"
+        (closeForm)="toggleFormActive()"
         [header]="'Add new gallery'"
       >
       </app-gallery-form>
     </div>
   </div>
-  <div class="paging-container flex-row-container flex-justify-space-between" *ngIf="galleries.length">
-    <div>
-        <span [ngClass]="{'disabled-link':currentPage === 0}">
-                <a (click)="moveBack()">&lt;</a>
-              </span>
-      <span *ngFor="let item of numberOfPages; let i = index" [ngClass]="{'active-page':currentPage === i}">
-                <a (click)="setCurrentPage(i)">{{i + 1}}</a>
-              </span>
-      <span [ngClass]="{'disabled-link':currentPage === numberOfPages.length - 1}">
-                <a (click)="moveForward()">&gt;</a>
-              </span>
-    </div>
-    <p>Site {{currentPage + 1}} of {{numberOfPages.length}}</p>
-  </div>
-  <div class="buttons-container flex-row-container flex-wrap flex-justify-center flex-align-items-center">
-    <button class="button btn btn-primary" (click)="exportGalleries()">Export galleries</button>
-    <button class="button btn btn-danger" (click)="removeGalleries()">Delete galleries</button>
-  </div>
-</section>
+  <app-paging
+    [itemsList]="galleries"
+    [currentPage]="currentPage"
+    [numberOfPages]="numberOfPages"
+    (moveBack)="moveBack()"
+    (moveForward)="moveForward()"
+    (setCurrentPage)="setCurrentPage($event)"
+  ></app-paging>
+</div>
+<div class="buttons-container flex-row-container flex-wrap flex-justify-center flex-align-items-center">
+  <button class="button btn btn-primary" (click)="exportGalleries()">Export galleries</button>
+  <button class="button btn btn-danger" (click)="removeGalleries()">Delete galleries</button>
+</div>

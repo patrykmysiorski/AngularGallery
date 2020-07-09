@@ -1,0 +1,25 @@
+<div class="flex-col-container flex-justify-space-between max-height-70-vh">
+  <button class="btn btn-primary" (click)="onShowFormClick()" *ngIf="!showForm">add news</button>
+  <div class="flex-col-container flex-align-items-center" *ngIf="showForm">
+    <app-news-form
+      (addNews)="addNews()"
+      (closeForm)="onShowFormClick()"
+    ></app-news-form>
+  </div>
+  <div class="flex-row-container single-news-container flex-justify-space-between flex-wrap" *ngIf="!showForm">
+    <div class="single-news" *ngFor="let news of newsList | slice:start:end;">
+      <app-single-news
+        [news]="news"
+        (deleteNews)="onDeleteNews($event)"
+      ></app-single-news>
+    </div>
+  </div>
+  <app-paging
+    [itemsList]="newsList"
+    [currentPage]="currentPage"
+    [numberOfPages]="numberOfPages"
+    (moveBack)="moveBack()"
+    (moveForward)="moveForward()"
+    (setCurrentPage)="setCurrentPage($event)"
+  ></app-paging>
+</div>

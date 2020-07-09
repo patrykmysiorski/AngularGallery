@@ -46,7 +46,7 @@ export class GalleriesComponent implements OnInit {
     this.yearSearch = '';
   }
 
-  onGalleryEdiClose() {
+  toggleFormActive() {
     this.addGalleryActive = !this.addGalleryActive;
   }
 
@@ -68,10 +68,6 @@ export class GalleriesComponent implements OnInit {
     this.galleries = this.fetchGalleries();
     this.searchValue = '';
     this.createSortedYearsArray();
-  }
-
-  setAddGalleryActive() {
-    this.addGalleryActive = true;
   }
 
   fetchGalleries() {
