@@ -22,6 +22,7 @@ import {NewsFormComponent} from './components/dashboard/news-form/news-form.comp
 import { NewsContainerComponent } from './components/dashboard/news-container/news-container.component';
 import { SingleNewsComponent } from './components/dashboard/single-news/single-news.component';
 import { NewsPageComponent } from './components/dashboard/news-page/news-page.component';
+import { PagingComponent } from './components/paging/paging.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { NewsPageComponent } from './components/dashboard/news-page/news-page.co
     NewsFormComponent,
     NewsContainerComponent,
     SingleNewsComponent,
-    NewsPageComponent
+    NewsPageComponent,
+    PagingComponent
   ],
   imports: [
     BrowserModule,
