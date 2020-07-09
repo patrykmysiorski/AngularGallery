@@ -1,5 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {INews} from '../../../../intefaces/INews';
+import {httpOptions} from '../../../constants/httpUtils';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-single-news',
@@ -8,9 +10,21 @@ import {INews} from '../../../../intefaces/INews';
 })
 export class SingleNewsComponent implements OnInit {
 
+  @Output()
+  deleteNews = new EventEmitter();
+
   @Input() news: INews;
 
-  constructor() { }
+  httpOptions = httpOptions;
+
+  onDeleteNews() {
+    const url = `http://project.usagi.pl/news/delete/${this.news.newsId}`
+    this.http.post(url, {}, this.httpOptions).toPromise().then(() => {
+      this.deleteNews.emit(this.news.newsId);
+    });
+  }
+
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
   }

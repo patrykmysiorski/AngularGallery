@@ -1,6 +1,9 @@
 <div class="flex-col-container single-news m-t-8">
-  <img src="{{news.photo.thumbUrl}}" width="300" height="200">
-  <span class="m-t-8"><small>{{news.dateCreated | date: 'longDate'}}</small></span>
-  <h4 class="m-t-8">{{news.title}}</h4>
-  <p class="m-t-8">{{news.shortContent}}</p>
+  <a routerLink="news/{{news.newsId}}" class="thumb-container">
+    <img src="{{news.photo.thumbUrl}}">
+    <span class="m-t-8"><small>{{news.dateCreated | date: 'longDate'}}</small></span>
+    <h4 class="m-t-8">{{news.title}}</h4>
+    <p class="m-t-8 height-100">{{news.shortContent}}</p>
+  </a>
+  <button class="btn btn-danger delete-button" (click)="onDeleteNews()">delete news</button>
 </div>

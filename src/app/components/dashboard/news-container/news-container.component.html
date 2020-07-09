@@ -1,9 +1,8 @@
 <div class="flex-row-container  flex-wrap">
   <div class="single-news" *ngFor="let news of newsList">
-    <a routerLink="news/{{news.newsId}}" class="thumb-container">
-      <app-single-news
-        [news]="news"
-      ></app-single-news>
-    </a>
+    <app-single-news
+      [news]="news"
+      (deleteNews)="onDeleteNews($event)"
+    ></app-single-news>
   </div>
 </div>

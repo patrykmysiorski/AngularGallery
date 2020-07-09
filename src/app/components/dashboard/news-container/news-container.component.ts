@@ -20,6 +20,10 @@ export class NewsContainerComponent implements OnInit {
     });
   }
 
+  onDeleteNews(newsId) {
+    this.newsList = this.newsList.filter(news => news.newsId !== newsId);
+  }
+
   constructor(private http: HttpClient) {
     this.fetchGalleries();
   }
