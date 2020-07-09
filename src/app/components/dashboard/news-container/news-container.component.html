@@ -5,7 +5,7 @@
       (addNews)="addNews()"
     ></app-news-form>
   </div>
-  <div class="flex-row-container">
+  <div class="flex-row-container single-news-container flex-justify-space-between flex-wrap">
     <div class="single-news" *ngFor="let news of newsList | slice:start:end;">
       <app-single-news
         [news]="news"
