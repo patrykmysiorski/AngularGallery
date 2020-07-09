@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {httpOptions} from 'src/app/constants/httpUtils';
+import {HttpClient} from '@angular/common/http';
+import {INews} from '../../../../intefaces/INews';
 
 @Component({
   selector: 'app-news-container',
@@ -6,8 +9,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./news-container.component.scss']
 })
 export class NewsContainerComponent implements OnInit {
+  newsList: INews[];
+  httpOptions = httpOptions;
 
-  constructor() { }
+  fetchGalleries() {
+    this.http.get('http://project.usagi.pl/news', this.httpOptions).toPromise().then((response: INews[]) => {
+      this.newsList = response.filter(news => news.newsId != '');
+      // this.numberOfPages = this.calculateNumberOfPages();
+      // this.travelYearsArray = this.createSortedYearsArray();
+    });
+  }
+
+  constructor(private http: HttpClient) {
+    this.fetchGalleries();
+  }
 
   ngOnInit(): void {
   }
