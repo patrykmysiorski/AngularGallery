@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {httpOptions} from 'src/app/constants/httpUtils';
 import {INews} from '../../../../intefaces/INews';
@@ -13,6 +13,8 @@ export class NewsFormComponent implements OnInit {
   @ViewChild('newsForm', {static: false})
   newsForm: NgForm;
 
+  @Input() news: INews;
+
   @Output()
   addNews = new EventEmitter();
 
@@ -20,8 +22,6 @@ export class NewsFormComponent implements OnInit {
   closeForm = new EventEmitter();
 
   httpOptions = httpOptions;
-
-  news: INews;
 
   constructor(private http: HttpClient) {
   }
@@ -55,7 +55,6 @@ export class NewsFormComponent implements OnInit {
   onCancel() {
     this.newsForm.resetForm();
     this.closeForm.emit();
-
   }
 
   onSubmit() {

@@ -24,6 +24,7 @@ import { SingleNewsComponent } from './components/dashboard/single-news/single-n
 import { NewsPageComponent } from './components/dashboard/news-page/news-page.component';
 import { PagingComponent } from './components/paging/paging.component';
 import { TagsContainerComponent } from './components/tags/tags-container/tags-container.component';
+import { EditNewsFormComponent } from './components/dashboard/edit-news-form/edit-news-form.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { TagsContainerComponent } from './components/tags/tags-container/tags-co
     SingleNewsComponent,
     NewsPageComponent,
     PagingComponent,
-    TagsContainerComponent
+    TagsContainerComponent,
+    EditNewsFormComponent
   ],
   imports: [
     BrowserModule,

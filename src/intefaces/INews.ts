@@ -1,7 +1,7 @@
 import {IPhoto} from './IPhoto';
 
 export interface INews {
-  newsId: string;
+  newsId?: string;
   title: string;
   shortContent: string;
   fullContent: string;

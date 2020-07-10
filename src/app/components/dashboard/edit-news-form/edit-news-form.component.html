@@ -1,0 +1,59 @@
+<div class="form-container flex-col-container">
+  <h3>Edit news</h3>
+  <form #editNewsForm="ngForm" novalidate>
+    <div class="input-group field" [ngClass]="{'input-error': (editNewsForm.controls['title']?.touched ||
+editNewsForm.submitted) && editNewsForm.controls['title']?.invalid}">
+      <label>Title</label>
+      <input
+        type="text"
+        class="input-control"
+        name="title"
+        [(ngModel)]="news.title"
+        required>
+      <p class="error-text">This field is required</p>
+    </div>
+    <div class="input-group field" [ngClass]="{'input-error': (editNewsForm.controls['shortContent']?.touched ||
+editNewsForm.submitted) && editNewsForm.controls['shortContent']?.invalid}">
+      <label>Short description</label>
+      <textarea
+        type="text"
+        class="input-control"
+        name="shortContent"
+        [(ngModel)]="news.shortContent"
+        required>
+        </textarea>
+      <p class="error-text">This field is required</p>
+    </div>
+    <div class="input-group field" [ngClass]="{'input-error': (editNewsForm.controls['fullContent']?.touched ||
+editNewsForm.submitted) && editNewsForm.controls['fullContent']?.invalid}">
+      <label>Full content</label>
+      <textarea
+        type="text"
+        class="input-control"
+        name="fullContent"
+        [(ngModel)]="news.fullContent"
+        required>
+        </textarea>
+      <p class="error-text">This field is required</p>
+    </div>
+    <div class="input-group field" [ngClass]="{'input-error': (editNewsForm.controls['photo']?.touched ||
+    editNewsForm.submitted) && editNewsForm.controls['photo']?.invalid}">
+      <label>Photo url</label>
+      <input
+        type="text"
+        class="input-control"
+        name="photo"
+        [(ngModel)]="news.photo.thumbUrl">
+    </div>
+    <div class="flex-row-container">
+      <button class="btn btn-primary send-button"
+              (click)="onSaveNews()"
+              [disabled]="editNewsForm.submitted || editNewsForm.invalid || editNewsForm.pristine">edit news
+      </button>
+      <button type="button" class="button button-default"
+              (click)="onCancel()">
+        cancel
+      </button>
+    </div>
+  </form>
+</div>

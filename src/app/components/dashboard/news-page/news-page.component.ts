@@ -14,9 +14,13 @@ export class NewsPageComponent implements OnInit {
 
   newsId: string;
   news: INews;
-  newsCopy: INews;
-
   httpOptions = httpOptions;
+
+  showEdiNews: boolean = false;
+
+  toggleShowEdiNews() {
+    this.showEdiNews = !this.showEdiNews;
+  }
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private _location: Location) {
   }
@@ -25,11 +29,19 @@ export class NewsPageComponent implements OnInit {
     this._location.back();
   }
 
+  onSaveNews(news) {
+    this.http.post(`http://project.usagi.pl/news/${news.newsId}`,
+      news, this.httpOptions).toPromise().then((response: INews) => {
+      this.news = {...response};
+    });
+    this.toggleShowEdiNews();
+  }
+
   ngOnInit(): void {
     this.newsId = this.route.snapshot.paramMap.get('newsId');
     const url = `http://project.usagi.pl/news/${this.newsId}`;
     this.http.get(url, this.httpOptions).toPromise().then((response: INews) => {
-      this.newsCopy = {...response};
+      this.news = {...response};
     });
   }
 
