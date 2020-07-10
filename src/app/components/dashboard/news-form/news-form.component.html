@@ -50,7 +50,7 @@ newsForm.submitted) && newsForm.controls['fullContent']?.invalid}">
               (click)="onSubmit()"
               [disabled]="newsForm.submitted || newsForm.invalid || newsForm.pristine">add news
       </button>
-      <button type="button" class="button button-default"
+      <button type="button" class="btn btn-warning"
               (click)="onCancel()">
         cancel
       </button>
