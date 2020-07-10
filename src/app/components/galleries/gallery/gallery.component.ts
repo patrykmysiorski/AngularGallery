@@ -34,16 +34,8 @@ export class GalleryComponent implements OnInit {
     this.showPhotoForm = !this.showPhotoForm;
   }
 
-  openEditGallery() {
-    this.showPhotoForm = false;
-    this.showCommentForm = false;
-    this.showEditGalleryForm = true;
-  }
-
-  onGalleryEdiClose() {
-    this.showPhotoForm = false;
-    this.showCommentForm = true;
-    this.showEditGalleryForm = false;
+  toggleEditGallery() {
+    this.showEditGalleryForm = !this.showEditGalleryForm;
   }
 
   onGallerySave(gallery) {
@@ -51,6 +43,7 @@ export class GalleryComponent implements OnInit {
     this.http.post(`http://project.usagi.pl/gallery/${gallery.galleryId}`,
       this.gallery, this.httpOptions).toPromise().then((response: IGallery) => {
     });
+    this.toggleEditGallery();
   }
 
   updateGallery() {
