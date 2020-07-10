@@ -1,8 +1,8 @@
 <div class="form-container flex-col-container">
-  <h3>Add news</h3>
-  <form #newsForm="ngForm" novalidate>
-    <div class="input-group field" [ngClass]="{'input-error': (newsForm.controls['title']?.touched ||
-newsForm.submitted) && newsForm.controls['title']?.invalid}">
+  <h3>Edit news</h3>
+  <form #editNewsForm="ngForm" novalidate>
+    <div class="input-group field" [ngClass]="{'input-error': (editNewsForm.controls['title']?.touched ||
+editNewsForm.submitted) && editNewsForm.controls['title']?.invalid}">
       <label>Title</label>
       <input
         type="text"
@@ -12,8 +12,8 @@ newsForm.submitted) && newsForm.controls['title']?.invalid}">
         required>
       <p class="error-text">This field is required</p>
     </div>
-    <div class="input-group field" [ngClass]="{'input-error': (newsForm.controls['shortContent']?.touched ||
-newsForm.submitted) && newsForm.controls['shortContent']?.invalid}">
+    <div class="input-group field" [ngClass]="{'input-error': (editNewsForm.controls['shortContent']?.touched ||
+editNewsForm.submitted) && editNewsForm.controls['shortContent']?.invalid}">
       <label>Short description</label>
       <textarea
         type="text"
@@ -24,20 +24,20 @@ newsForm.submitted) && newsForm.controls['shortContent']?.invalid}">
         </textarea>
       <p class="error-text">This field is required</p>
     </div>
-    <div class="input-group field" [ngClass]="{'input-error': (newsForm.controls['fullContent']?.touched ||
-newsForm.submitted) && newsForm.controls['fullContent']?.invalid}">
+    <div class="input-group field" [ngClass]="{'input-error': (editNewsForm.controls['fullContent']?.touched ||
+editNewsForm.submitted) && editNewsForm.controls['fullContent']?.invalid}">
       <label>Full content</label>
       <textarea
         type="text"
         class="input-control"
-        name="message"
+        name="fullContent"
         [(ngModel)]="news.fullContent"
         required>
         </textarea>
       <p class="error-text">This field is required</p>
     </div>
-    <div class="input-group field" [ngClass]="{'input-error': (newsForm.controls['photo']?.touched ||
-    newsForm.submitted) && newsForm.controls['photo']?.invalid}">
+    <div class="input-group field" [ngClass]="{'input-error': (editNewsForm.controls['photo']?.touched ||
+    editNewsForm.submitted) && editNewsForm.controls['photo']?.invalid}">
       <label>Photo url</label>
       <input
         type="text"
@@ -47,8 +47,8 @@ newsForm.submitted) && newsForm.controls['fullContent']?.invalid}">
     </div>
     <div class="flex-row-container">
       <button class="btn btn-primary send-button"
-              (click)="onSubmit()"
-              [disabled]="newsForm.submitted || newsForm.invalid || newsForm.pristine">add news
+              (click)="onSaveNews()"
+              [disabled]="editNewsForm.submitted || editNewsForm.invalid || editNewsForm.pristine">edit news
       </button>
       <button type="button" class="button button-default"
               (click)="onCancel()">

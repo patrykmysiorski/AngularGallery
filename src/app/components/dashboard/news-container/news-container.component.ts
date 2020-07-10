@@ -18,17 +18,22 @@ export class NewsContainerComponent implements OnInit {
   end: number;
   numberOfPages: number;
 
-  fetchGalleries() {
+  toTimeStamp(date: any) {
+    const dateFormat = new Date(date);
+    return dateFormat.getTime();
+  }
+
+  fetchNewsList() {
     this.http.get('http://project.usagi.pl/news', this.httpOptions).toPromise().then((response: INews[]) => {
       this.newsList = response.filter(news => news.newsId != '');
+      this.newsList = this.newsList.sort((a: INews, b: INews) => this.toTimeStamp(a.dateCreated) - this.toTimeStamp(b.dateCreated));
+      this.newsList = this.newsList.reverse();
       this.numberOfPages = this.calculateNumberOfPages();
-      // this.numberOfPages = this.calculateNumberOfPages();
-      // this.travelYearsArray = this.createSortedYearsArray();
     });
   }
 
   addNews() {
-    this.fetchGalleries();
+    this.fetchNewsList();
     this.showForm = !this.showForm;
   }
 
@@ -41,7 +46,7 @@ export class NewsContainerComponent implements OnInit {
   }
 
   constructor(private http: HttpClient) {
-    this.fetchGalleries();
+    this.fetchNewsList();
   }
 
   onShowFormClick() {
@@ -65,6 +70,7 @@ export class NewsContainerComponent implements OnInit {
   }
 
   calculateNumberOfPages(): any {
+    console.log(this.newsList.length);
     let numberOfPages = Array(Math.ceil(this.newsList.length /
       this.limit)).fill(1);
     if (numberOfPages[0] == undefined) {
@@ -74,7 +80,7 @@ export class NewsContainerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchGalleries();
+    this.fetchNewsList();
     this.currentPage = parseInt(localStorage.getItem('galleryPage')) || 0;
     this.setCurrentPage(this.currentPage);
   }

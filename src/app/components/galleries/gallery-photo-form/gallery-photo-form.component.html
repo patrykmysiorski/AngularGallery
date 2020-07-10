@@ -1,7 +1,7 @@
 <div class="photo-form flex-col-container flex-center-both">
   <form #photoForm="ngForm" novalidate>
     <h4>Add photo</h4>
-    <div class="input-group"
+    <div class="input-group field"
          [ngClass]="{'input-error': (photoForm.controls['thumbUrl']?.touched ||
 photoForm.submitted) && photoForm.controls['thumbUrl']?.invalid}">
       <label>Photo</label>
@@ -13,15 +13,14 @@ photoForm.submitted) && photoForm.controls['thumbUrl']?.invalid}">
         required>
       <p class="error-text">This field is required</p>
     </div>
-    <div class="flex-row-container flex-wrap">
-      <button class="button button-success"
-              [disabled]="photoForm.invalid && photoForm.submitted"
-              (click)="onAddPhoto()">
-        Add to gallery
+    <div class="flex-row-container">
+      <button class="btn btn-primary send-button"
+              (click)="onAddPhoto()"
+              [disabled]="photoForm.submitted || photoForm.invalid || photoForm.pristine">add photo
       </button>
       <button type="button" class="button button-default"
               (click)="onCancel()">
-        Cancel
+        cancel
       </button>
     </div>
   </form>

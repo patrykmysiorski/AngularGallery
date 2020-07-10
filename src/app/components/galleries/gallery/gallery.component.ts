@@ -21,30 +21,20 @@ export class GalleryComponent implements OnInit {
   showPhotoForm: boolean = false;
   showEditGalleryForm: boolean = false;
   showCommentForm: boolean = true;
-  galleryCopy: IGallery;
+  currentPage: number;
+  numberOfPages: any;
+  limit: number;
+  start: number;
+  end: number;
+  withoutText = true;
 
-  openPhotoForm() {
-    this.showPhotoForm = true;
-    this.showCommentForm = false;
-    this.showEditGalleryForm = false;
+
+  togglePhotoForm() {
+    this.showPhotoForm = !this.showPhotoForm;
   }
 
-  closePhotoForm() {
-    this.showPhotoForm = false;
-    this.showCommentForm = true;
-    this.showEditGalleryForm = false;
-  }
-
-  openEditGallery() {
-    this.showPhotoForm = false;
-    this.showCommentForm = false;
-    this.showEditGalleryForm = true;
-  }
-
-  onGalleryEdiClose() {
-    this.showPhotoForm = false;
-    this.showCommentForm = true;
-    this.showEditGalleryForm = false;
+  toggleEditGallery() {
+    this.showEditGalleryForm = !this.showEditGalleryForm;
   }
 
   onGallerySave(gallery) {
@@ -52,6 +42,7 @@ export class GalleryComponent implements OnInit {
     this.http.post(`http://project.usagi.pl/gallery/${gallery.galleryId}`,
       this.gallery, this.httpOptions).toPromise().then((response: IGallery) => {
     });
+    this.toggleEditGallery();
   }
 
   updateGallery() {
@@ -64,13 +55,14 @@ export class GalleryComponent implements OnInit {
       this.gallery, this.httpOptions).toPromise().then((response: IGallery) => {
       this.gallery = response;
     });
+    this.numberOfPages = this.calculateNumberOfPages();
   }
 
   addPhoto(photo) {
     const databasePhoto = {...photo, photoId: this.generatePhotoId()};
     this.gallery.photos.push(databasePhoto);
     this.updateGallery();
-    this.showPhotoForm = false;
+    this.togglePhotoForm();
   }
 
   deletePhoto(photoId) {
@@ -80,6 +72,9 @@ export class GalleryComponent implements OnInit {
 
     this.gallery.photos.splice(index, 1);
     this.updateGallery();
+    if (this.gallery.photos.length % 4 === 0 && this.currentPage != 0) {
+      this.setCurrentPage(this.currentPage - 1);
+    }
   }
 
   generatePhotoId() {
@@ -131,12 +126,33 @@ export class GalleryComponent implements OnInit {
   constructor(private route: ActivatedRoute, private http: HttpClient, private _location: Location) {
   }
 
-  createGalleryCopy() {
-    this.galleryCopy = {...this.gallery};
-  }
-
   backToGalleries() {
     this._location.back();
+  }
+
+  setCurrentPage(page = 0) {
+    this.limit = 4;
+    this.currentPage = page;
+    this.start = this.currentPage * this.limit;
+    this.end = this.start + 4;
+    localStorage.setItem('photosPage', this.currentPage.toString());
+  }
+
+  moveBack() {
+    this.setCurrentPage(this.currentPage - 1);
+  }
+
+  moveForward() {
+    this.setCurrentPage(this.currentPage + 1);
+  }
+
+  calculateNumberOfPages(): any {
+    let numberOfPages = Array(Math.ceil(this.gallery.photos.length /
+      this.limit)).fill(1);
+    if (numberOfPages[0] == undefined) {
+      numberOfPages[0] = 1;
+    }
+    return numberOfPages;
   }
 
   ngOnInit(): void {
@@ -144,12 +160,15 @@ export class GalleryComponent implements OnInit {
     const url = 'http://project.usagi.pl/gallery/' + this.galleryId;
     this.http.get(url, this.httpOptions).toPromise().then((response: IGallery) => {
       this.gallery = this.convertTagsToUpperCase(response);
-      this.createGalleryCopy();
+      this.numberOfPages = this.calculateNumberOfPages();
+      this.calculateNumberOfPages();
     });
     const urlForComments = 'http://project.usagi.pl/comment/byGallery/' + this.galleryId;
     this.http.get(urlForComments, this.httpOptions).toPromise().then((response: IComment[]) => {
       this.comments = response;
     });
+    this.currentPage = parseInt(localStorage.getItem('photosPage')) || 0;
+    this.setCurrentPage(this.currentPage);
   }
 
 }

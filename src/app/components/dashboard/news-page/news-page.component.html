@@ -1,20 +1,30 @@
-<div class="flex-col-container news-page flex-justify-space-between">
+<div class="flex-col-container news-page flex-justify-space-between" *ngIf="!showEdiNews">
   <div>
-    <img class="photo-container" src="{{newsCopy.photo.thumbUrl}}" alt="image not found">
+    <img class="photo-container" src="{{news.photo.thumbUrl}}" alt="image not found">
   </div>
   <div>
-    <h2>{{newsCopy.title}}</h2>
+    <h2>{{news.title}}</h2>
   </div>
   <div>
-    <p class="m-t-8"><small>{{newsCopy.dateCreated | date: 'longDate'}}</small></p>
+    <p class="m-t-8"><small>{{news.dateCreated | date: 'longDate'}}</small></p>
   </div>
   <div>
-    <h4>{{newsCopy.shortContent}}</h4>
+    <h4>{{news.shortContent}}</h4>
   </div>
   <div>
-    <p>{{newsCopy.fullContent}}</p>
+    <p>{{news.fullContent}}</p>
   </div>
   <div>
-    <button class="btn btn-primary" (click)="backToDashboard()">back to dashboard</button>
+    <div class="flex-row-container flex-justify-space-between">
+      <button class="btn btn-primary" (click)="backToDashboard()">back to dashboard</button>
+      <button class="btn btn-info" (click)="toggleShowEdiNews()">edit news</button>
+    </div>
   </div>
 </div>
+<app-edit-news-form
+  *ngIf="showEdiNews"
+  [news]="news"
+  (saveNews)="onSaveNews($event)"
+  (closeForm)="toggleShowEdiNews()"
+>
+</app-edit-news-form>

@@ -2,35 +2,27 @@
   max-width: 1200px;
 }
 
-.gallery {
-  max-width: 65%;
-  margin: auto;
+.gallery-container {
+  max-width: 1200px;
+  min-height: 80vh;
 }
 
-h1 {
-  margin-bottom: 10px;
+.back-button {
+  margin-right: 10px;
 }
 
-p {
-  margin-bottom: 20px;
+h3 {
+  margin-top: 20px;
 }
 
-.tags {
-  max-width: 600px;
-}
-
-.tag {
-  background-color: #acacac;
-  padding: 5px;
-  margin-right: 6px;
-}
-
-span {
-  margin-right: 15px;
+.photo-section-container {
+  width: 1140px;
+  margin-top: 50px;
 }
 
 .main-photo {
-  margin-top: 50px;
+  width: 45%;
+  border-right: 1px solid white;
 }
 
 .main-photo img {
@@ -41,36 +33,14 @@ span {
   border-radius: 4px;
 }
 
-.other-photos {
-  margin-top: 40px;
+.other-photos-container {
+  max-width: 600px;
+  justify-content: space-around;
+  min-height: 400px;
 }
 
 .other-photo {
-  max-width: 300px;
-  max-height: 300px;
-  margin-right: 20px;
-  margin-bottom: 10px;
   position: relative;
-}
-
-.other-photos img {
-  width: 100%;
-  object-fit: contain;
-  border: 1px solid white;
-  padding: 5px;
-}
-
-.comment-section {
-  min-width: 250px;
-  height: 150px;
-}
-
-.tags-container {
-  margin-top: 15px;
-}
-
-.add-photo-button {
-  margin: 10px 0;
 }
 
 .delete-button {
@@ -81,6 +51,24 @@ span {
   padding: 5px;
 }
 
-.header-block {
-  max-width: 40%;
+.footer {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.comment-form {
+  width: 45%;
+  border-right: 1px solid white;
+}
+
+.margin-bottom {
+  margin-bottom: 100px;
+}
+
+.comments-container {
+  width: 600px;
+}
+
+.edit-gallery-button {
+  width: 80%;
 }

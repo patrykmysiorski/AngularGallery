@@ -1,14 +1,13 @@
 .form-container {
-  margin-top: 180px;
+  width: 400px;
 }
 
-.input-group {
-  margin-right: 10px;
-  width: 100%;
+.field {
+  width: 400px;
 }
 
-.button-success {
-  margin-left: -12px;
+.mini-field {
+  width: 190px;
 }
 
 label {
@@ -20,10 +19,9 @@ textarea {
 }
 
 h3 {
-  margin-left: -20px;
   margin-bottom: 10px;
 }
 
-form {
-  max-width: 90%;
+.send-button {
+  width: 100%;
 }
