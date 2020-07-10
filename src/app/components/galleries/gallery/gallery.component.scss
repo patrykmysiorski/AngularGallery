@@ -25,10 +25,6 @@ span {
   height: 150px;
 }
 
-.add-photo-button {
-  margin: 10px 0;
-}
-
 // NEW
 
 .gallery-container {
@@ -65,6 +61,7 @@ h3 {
 .other-photos-container {
   max-width: 600px;
   justify-content: space-around;
+  min-height: 400px;
 }
 
 .other-photo {
@@ -77,4 +74,9 @@ h3 {
   top: 0;
   font-size: 20px;
   padding: 5px;
+}
+
+.footer {
+  width: 100%;
+  margin-top: 5px;
 }

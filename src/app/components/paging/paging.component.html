@@ -10,5 +10,7 @@
       <a (click)="onMoveForward()">&gt;</a>
     </span>
   </div>
-  <p *ngIf="numberOfPages">Site {{currentPage + 1}} of {{numberOfPages.length}}</p>
+  <div *ngIf="!withoutText">
+    <p *ngIf="numberOfPages">Site {{currentPage + 1}} of {{numberOfPages.length}}</p>
+  </div>
 </div>

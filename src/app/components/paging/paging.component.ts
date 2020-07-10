@@ -19,6 +19,7 @@ export class PagingComponent implements OnInit {
   @Input() itemsList: any;
   @Input() currentPage: number;
   @Input() numberOfPages: [];
+  @Input() withoutText: boolean;
 
   onMoveBack() {
     this.moveBack.emit(this.currentPage - 1);

@@ -1,0 +1,48 @@
+<div class="main-container flex-row-container flex-wrap flex-justify-space-between">
+  <div class="gallery flex-col-container" *ngIf="gallery">
+    <div class="flex-col-container">
+      <div class="header-block flex-row-container flex-justify-space-between flex-align-items-center">
+        <button class="btn btn-primary" (click)="backToGalleries()">back to galleries</button>
+        <h2>{{gallery.title}}</h2>
+      </div>
+      <p><small>{{gallery.dateCreated | date: 'longDate'}}</small></p>
+      <h3>{{gallery.description}}</h3>
+      <app-tags-container
+        [gallery]="gallery"
+        (removeTag)="removeTag($event)"
+        (addTag)="addTag($event)"
+      >
+      </app-tags-container>
+    </div>
+    <div class="main-photo flex-row-container flex-justify-space-between">
+      <img src="{{gallery.thumbUrl}}" alt="image not found">
+    </div>
+    <div class="other-photos-container flex-row-container flex-wrap flex-justify-center">
+      <div class="other-photo" *ngFor="let image of gallery.photos">
+        <img alt="image not found" src="{{image.thumbUrl}}">
+        <i class="fa fa-remove delete-button" (click)="deletePhoto(image.photoId)"></i>
+      </div>
+      <button class="button button-success add-photo-button" (click)="openPhotoForm()">Add Photo
+      </button>
+    </div>
+    <app-comments-container *ngIf="gallery" [comments]="comments"
+                            (deleteComment)="deleteComment($event)">
+    </app-comments-container>
+  </div>
+  <div class="comment-section flex-col-container flex-align-items-start" *ngIf="gallery">
+    <app-comment-form [galleryId]="gallery.galleryId" (addComment)="updateComments($event)"
+                      *ngIf="showCommentForm"></app-comment-form>
+
+    <app-gallery-photo-form
+      (addPhoto)="addPhoto($event)"
+      (closeForm)="closePhotoForm()"
+      *ngIf="showPhotoForm"
+    ></app-gallery-photo-form>
+    <app-gallery-form *ngIf="showEditGalleryForm"
+                      [gallery]="galleryCopy" (saveGallery)="onGallerySave($event)"
+                      (closeForm)="onGalleryEdiClose()"
+                      [header]="'Edit gallery'"
+    >
+    </app-gallery-form>
+  </div>
+</div>

@@ -1,5 +1,5 @@
-<div class="gallery-container flex-col-container">
-  <!--<div class="gallery-container flex-col-container flex-justify-space-between">-->
+<!--<div class="gallery-container flex-col-container">-->
+<div class="gallery-container flex-col-container flex-justify-space-between">
   <!--  HEADER SECTION-->
   <div class="header flex-row-container">
     <button class="btn btn-primary back-button" (click)="backToGalleries()">back to galleries</button>
@@ -19,14 +19,33 @@
     <div class="main-photo flex-row-container flex-justify-space-between">
       <img src="{{gallery.thumbUrl}}" alt="image not found">
     </div>
+    <!--    OTHER PHOTO-->
     <div class="flex-col-container flex-align-end">
-      <div class="other-photos-container flex-row-container flex-wrap">
-        <div class="other-photo" *ngFor="let photo of gallery.photos">
+      <app-gallery-photo-form
+        (addPhoto)="addPhoto($event)"
+        (closeForm)="togglePhotoForm()"
+        *ngIf="showPhotoForm"
+      ></app-gallery-photo-form>
+      <div class="other-photos-container flex-row-container flex-wrap" *ngIf="!showPhotoForm">
+        <div class="other-photo" *ngFor="let photo of gallery.photos | slice:start:end;">
           <img src="{{photo.thumbUrl}}" width="280">
           <i class="fa fa-remove delete-button" (click)="deletePhoto(photo.photoId)"></i>
         </div>
       </div>
+      <div class="footer flex-row-container flex-justify-space-between">
+        <button class="btn btn-primary" (click)="togglePhotoForm()">add photo</button>
+        <app-paging
+          [withoutText]="withoutText"
+          [itemsList]="gallery.photos"
+          [currentPage]="currentPage"
+          [numberOfPages]="numberOfPages"
+          (moveBack)="moveBack()"
+          (moveForward)="moveForward()"
+          (setCurrentPage)="setCurrentPage($event)"
+        ></app-paging>
+      </div>
     </div>
+    <!--    COMMENTS-->
   </div>
 
 </div>
