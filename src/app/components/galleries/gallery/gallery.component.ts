@@ -21,7 +21,6 @@ export class GalleryComponent implements OnInit {
   showPhotoForm: boolean = false;
   showEditGalleryForm: boolean = false;
   showCommentForm: boolean = true;
-  galleryCopy: IGallery;
   currentPage: number;
   numberOfPages: any;
   limit: number;
@@ -127,10 +126,6 @@ export class GalleryComponent implements OnInit {
   constructor(private route: ActivatedRoute, private http: HttpClient, private _location: Location) {
   }
 
-  createGalleryCopy() {
-    this.galleryCopy = {...this.gallery};
-  }
-
   backToGalleries() {
     this._location.back();
   }
@@ -166,9 +161,7 @@ export class GalleryComponent implements OnInit {
     this.http.get(url, this.httpOptions).toPromise().then((response: IGallery) => {
       this.gallery = this.convertTagsToUpperCase(response);
       this.numberOfPages = this.calculateNumberOfPages();
-      this.createGalleryCopy();
       this.calculateNumberOfPages();
-      // this.gallery.photos.splice(-1, 1);
     });
     const urlForComments = 'http://project.usagi.pl/comment/byGallery/' + this.galleryId;
     this.http.get(urlForComments, this.httpOptions).toPromise().then((response: IComment[]) => {

@@ -22,7 +22,7 @@
           edit gallery
         </button>
         <app-gallery-form *ngIf="showEditGalleryForm"
-                          [gallery]="galleryCopy" (saveGallery)="onGallerySave($event)"
+                          [gallery]="gallery" (saveGallery)="onGallerySave($event)"
                           (closeForm)="toggleEditGallery()"
                           [header]="'Edit gallery'"
         >
