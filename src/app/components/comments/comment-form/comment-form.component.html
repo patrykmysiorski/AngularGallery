@@ -1,8 +1,8 @@
 <div class="form-container flex-col-container flex-align-items-center">
   <h3>Comments</h3>
   <form #commentForm="ngForm" novalidate>
-    <div class="flex-row-container">
-      <div class="input-group" [ngClass]="{'input-error': (commentForm.controls['firstName']?.touched ||
+    <div class="flex-row-container flex-justify-space-between">
+      <div class="input-group mini-field" [ngClass]="{'input-error': (commentForm.controls['firstName']?.touched ||
 commentForm.submitted) && commentForm.controls['firstName']?.invalid}">
         <label>First name</label>
         <input
@@ -13,7 +13,7 @@ commentForm.submitted) && commentForm.controls['firstName']?.invalid}">
           required>
         <p class="error-text">This field is required</p>
       </div>
-      <div class="input-group" [ngClass]="{'input-error': (commentForm.controls['lastName']?.touched ||
+      <div class="input-group mini-field" [ngClass]="{'input-error': (commentForm.controls['lastName']?.touched ||
 commentForm.submitted) && commentForm.controls['lastName']?.invalid}">
         <label>Last name</label>
         <input
@@ -25,39 +25,40 @@ commentForm.submitted) && commentForm.controls['lastName']?.invalid}">
         <p class="error-text">This field is required</p>
       </div>
     </div>
-    <div class="flex-row-container">
-      <div class="input-group" [ngClass]="{'input-error': (commentForm.controls['email']?.touched ||
+    <div class="input-group field" [ngClass]="{'input-error': (commentForm.controls['email']?.touched ||
 commentForm.submitted) && commentForm.controls['email']?.invalid}">
-        <label>Email</label>
-        <input
-          type="text"
-          class="input-control"
-          name="email"
-          [(ngModel)]="comment.email"
-          [pattern]="emailPattern"
-          required>
-        <p class="error-text">This field is required</p>
-        <p class="error-text"
-           *ngIf="commentForm.controls['email']?.errors?.pattern">Input correct email</p>
-      </div>
+      <label>Email</label>
+      <input
+        type="text"
+        class="input-control"
+        name="email"
+        [(ngModel)]="comment.email"
+        [pattern]="emailPattern"
+        required>
+      <p class="error-text">This field is required</p>
+      <p class="error-text"
+         *ngIf="commentForm.controls['email']?.errors?.pattern">Input correct email</p>
+    </div>
+    <div class="input-group field" [ngClass]="{'input-error': (commentForm.controls['message']?.touched ||
+commentForm.submitted) && commentForm.controls['message']?.invalid}">
+      <label>Message</label>
+      <textarea
+        type="text"
+        class="input-control"
+        name="message"
+        [(ngModel)]="comment.message"
+        required>
+        </textarea>
+      <p class="error-text">This field is required</p>
     </div>
     <div class="flex-row-container">
-      <div class="input-group" [ngClass]="{'input-error': (commentForm.controls['message']?.touched ||
-commentForm.submitted) && commentForm.controls['message']?.invalid}">
-        <label>Message</label>
-        <textarea
-          type="text"
-          class="input-control"
-          name="message"
-          [(ngModel)]="comment.message"
-          required>
-        </textarea>
-        <p class="error-text">This field is required</p>
-      </div>
+      <button class="btn btn-primary send-button"
+              (click)="onSubmit()"
+              [disabled]="commentForm.submitted || commentForm.invalid || commentForm.pristine">add news
+      </button>
+      <button type="button" class="button button-default" (click)="onCancel()">
+        cancel
+      </button>
     </div>
-    <button class="button button-success"
-            (click)="onSubmit()"
-            [disabled]="commentForm.submitted || commentForm.invalid || commentForm.pristine">Send comment
-    </button>
   </form>
 </div>

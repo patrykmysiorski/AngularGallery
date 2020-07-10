@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="footer flex-row-container flex-justify-space-between">
-        <button class="btn btn-primary" (click)="togglePhotoForm()">add photo</button>
+        <button class="btn btn-primary" (click)="togglePhotoForm()" *ngIf="!showPhotoForm">add photo</button>
         <app-paging
           [withoutText]="withoutText"
           [itemsList]="gallery.photos"
@@ -45,7 +45,24 @@
         ></app-paging>
       </div>
     </div>
-    <!--    COMMENTS-->
   </div>
-
+  <!--    COMMENTS-->
+  <div class="photo-section-container flex-row-container flex-justify-space-between margin-bottom">
+    <div class="comment-form">
+      <app-comment-form
+        [galleryId]="gallery.galleryId"
+        (addComment)="updateComments($event)"
+        *ngIf="showCommentForm"
+      >
+      </app-comment-form>
+    </div>
+    <div class="comments-container">
+    <app-comments-container
+      *ngIf="gallery"
+      [comments]="comments"
+      (deleteComment)="deleteComment($event)"
+    >
+    </app-comments-container>
+    </div>
+  </div>
 </div>

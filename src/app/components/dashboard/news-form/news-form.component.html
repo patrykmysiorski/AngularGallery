@@ -48,11 +48,11 @@ newsForm.submitted) && newsForm.controls['fullContent']?.invalid}">
     <div class="flex-row-container">
       <button class="btn btn-primary send-button"
               (click)="onSubmit()"
-              [disabled]="newsForm.submitted || newsForm.invalid || newsForm.pristine">add news
+              [disabled]="newsForm.submitted || newsForm.invalid || newsForm.pristine">add comment
       </button>
       <button type="button" class="button button-default"
               (click)="onCancel()">
-        Cancel
+        cancel
       </button>
     </div>
   </form>

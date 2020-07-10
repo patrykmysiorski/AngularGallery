@@ -53,5 +53,10 @@ export class CommentFormComponent implements OnInit {
     };
   }
 
+  onCancel() {
+    this.setEmptyComment();
+    this.commentForm.resetForm();
+  }
+
 
 }
