@@ -54,7 +54,7 @@ commentForm.submitted) && commentForm.controls['message']?.invalid}">
     <div class="flex-row-container">
       <button class="btn btn-primary send-button"
               (click)="onSubmit()"
-              [disabled]="commentForm.submitted || commentForm.invalid || commentForm.pristine">add news
+              [disabled]="commentForm.submitted || commentForm.invalid || commentForm.pristine">add comment
       </button>
       <button type="button" class="button button-default" (click)="onCancel()">
         cancel
