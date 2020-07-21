@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {IComment} from '../../../../intefaces/IComment';
 import {httpOptions} from '../../../constants/httpUtils';
 import {Location} from '@angular/common';
+import * as endpoints from '../../../constants/endpoints';
 
 @Component({
   selector: 'app-gallery',
@@ -157,8 +158,8 @@ export class GalleryComponent implements OnInit {
 
   ngOnInit(): void {
     this.galleryId = this.route.snapshot.paramMap.get('galleryId');
-    const url = 'http://project.usagi.pl/gallery/' + this.galleryId;
-    this.http.get(url, this.httpOptions).toPromise().then((response: IGallery) => {
+    const url = `${endpoints.GET_GALLERY}/${this.galleryId}`;
+    this.http.get(url).toPromise().then((response: IGallery) => {
       this.gallery = this.convertTagsToUpperCase(response);
       this.numberOfPages = this.calculateNumberOfPages();
       this.calculateNumberOfPages();

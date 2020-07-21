@@ -4,6 +4,7 @@ import {Galleries} from '../../../constants/galleries.constant';
 import * as moment from 'moment';
 import {HttpClient} from '@angular/common/http';
 import {httpOptions} from '../../../constants/httpUtils';
+import * as endpoints from '../../../constants/endpoints';
 
 @Component({
   selector: 'app-galleries',
@@ -32,10 +33,10 @@ export class GalleriesComponent implements OnInit {
   @Output() clearValues = new EventEmitter();
 
   onGallerySave(gallery) {
-    this.http.post('http://project.usagi.pl/gallery', gallery, this.httpOptions).toPromise().then((response: IGallery) => {
+    this.http.post(endpoints.ADD_GALLERY, gallery).toPromise().then(() => {
       console.log('success');
       this.setCurrentPage();
-      this.galleries.push(response);
+      this.galleries = this.fetchGalleries();
       this.numberOfPages = this.calculateNumberOfPages();
       this.addGalleryActive = !this.addGalleryActive;
       this.travelYearsArray = this.createSortedYearsArray();
@@ -72,7 +73,7 @@ export class GalleriesComponent implements OnInit {
 
   fetchGalleries() {
     this.galleries = [];
-    this.http.get('http://project.usagi.pl/gallery', this.httpOptions).toPromise().then((response: IGallery[]) => {
+    this.http.get(endpoints.GET_ALL_GALLERIES).toPromise().then((response: IGallery[]) => {
       this.galleries = response;
       this.numberOfPages = this.calculateNumberOfPages();
       this.travelYearsArray = this.createSortedYearsArray();
@@ -105,8 +106,7 @@ export class GalleriesComponent implements OnInit {
 
   removeGalleries() {
     this.galleries.forEach((gallery: IGallery) => {
-      this.http.post('http://project.usagi.pl/gallery/delete/' +
-        gallery.galleryId, {}, this.httpOptions).toPromise().then((response) => {
+      this.http.delete(`${endpoints.DELETE_GALLERY}/${gallery.galleryId}`).toPromise().then((response) => {
         this.galleries = [];
         this.numberOfPages = this.calculateNumberOfPages();
         this.setCurrentPage();
@@ -128,8 +128,7 @@ export class GalleriesComponent implements OnInit {
   }
 
   removeGallery(galleryId) {
-    this.http.post('http://project.usagi.pl/gallery/delete/' + galleryId,
-      {}, this.httpOptions).toPromise().then((response) => {
+    this.http.delete(`${endpoints.DELETE_GALLERY}/${galleryId}`).toPromise().then((response) => {
       this.galleries = this.galleries.filter((gallery: IGallery) => {
         return gallery.galleryId !== galleryId;
       });
@@ -161,8 +160,7 @@ export class GalleriesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get('http://project.usagi.pl/gallery',
-      this.httpOptions).toPromise().then((response: IGallery[]) => {
+    this.http.get(endpoints.GET_ALL_GALLERIES).toPromise().then((response: IGallery[]) => {
       this.galleries = response;
       this.numberOfPages = this.calculateNumberOfPages();
     });
